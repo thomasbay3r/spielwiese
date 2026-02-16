@@ -16,6 +16,7 @@
             --accent-blue: #4fc3f7;
             --accent-purple: #b388ff;
             --accent-gold: #ffd54f;
+            --accent-red: #ff5252;
             --success: #69f0ae;
             --error: #ff5252;
             
@@ -91,6 +92,8 @@
             align-items: center;
             background: linear-gradient(180deg, rgba(5,5,16,0.95) 0%, transparent 100%);
             backdrop-filter: blur(10px);
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .logo {
@@ -127,6 +130,8 @@
         nav {
             display: flex;
             gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .nav-btn {
@@ -244,6 +249,14 @@
             margin-bottom: 1rem;
         }
 
+        .luminosity-class {
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         .star-info {
             display: flex;
             flex-direction: column;
@@ -302,6 +315,12 @@
             margin-top: 1rem;
         }
 
+        .size-bar-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.3rem;
+        }
+
         .size-bar {
             height: 8px;
             background: rgba(255,255,255,0.1);
@@ -314,6 +333,131 @@
             background: linear-gradient(90deg, var(--accent-blue), var(--star-color));
             border-radius: 4px;
             transition: width 0.5s ease;
+        }
+
+        /* Section Divider */
+        .section-divider {
+            margin: 4rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .section-divider-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            text-align: center;
+            color: var(--accent-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-divider-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Evolution Timeline */
+        .evolution-container {
+            margin: 2rem 0;
+        }
+
+        .evolution-path {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 900px) {
+            .evolution-path {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        .evolution-stage {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+            transition: all 0.3s ease;
+        }
+
+        .evolution-stage:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .evolution-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent-purple);
+            min-width: 50px;
+        }
+
+        .evolution-visual {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .evolution-icon {
+            font-size: 1.8rem;
+        }
+
+        .evolution-info h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .evolution-info p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .evolution-arrow {
+            display: none;
+        }
+
+        /* Evolution Colors */
+        .evo-proto { background: radial-gradient(circle, #ff9800, #ff5722); box-shadow: 0 0 20px rgba(255, 152, 0, 0.5); }
+        .evo-main { background: radial-gradient(circle, #fff4ea, #ffd2a1); box-shadow: 0 0 20px rgba(255, 244, 234, 0.4); }
+        .evo-giant { background: radial-gradient(circle, #ff6f3f, #ff5252); box-shadow: 0 0 25px rgba(255, 111, 63, 0.6); }
+        .evo-nebula { background: radial-gradient(circle, #e040fb, #7c4dff); box-shadow: 0 0 20px rgba(224, 64, 251, 0.5); }
+        .evo-white { background: radial-gradient(circle, #ffffff, #e3f2fd); box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); }
+        .evo-supernova { background: radial-gradient(circle, #ffff00, #ff9800); box-shadow: 0 0 30px rgba(255, 235, 59, 0.7); animation: supernova-pulse 1s infinite; }
+        .evo-neutron { background: radial-gradient(circle, #64b5f6, #1976d2); box-shadow: 0 0 15px rgba(100, 181, 246, 0.5); }
+        .evo-blackhole { background: radial-gradient(circle, #212121, #000000); box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); border: 2px solid #424242; }
+
+        @keyframes supernova-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Mass indicator */
+        .mass-indicator {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            background: rgba(179, 136, 255, 0.2);
+            border-radius: 10px;
+            color: var(--accent-purple);
+            margin-top: 0.5rem;
         }
 
         /* Quiz Section */
@@ -341,6 +485,8 @@
             margin-bottom: 2rem;
             padding-bottom: 1.5rem;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .quiz-score {
@@ -528,7 +674,7 @@
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
-                gap: 1rem;
+                align-items: center;
             }
 
             .logo h1 {
@@ -564,23 +710,10 @@
             .quiz-question {
                 font-size: 1.1rem;
             }
-        }
 
-        /* Tooltip */
-        .tooltip {
-            position: absolute;
-            background: var(--bg-card);
-            border: 1px solid var(--accent-blue);
-            padding: 1rem;
-            border-radius: 8px;
-            max-width: 250px;
-            z-index: 100;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            display: none;
-        }
-
-        .tooltip.show {
-            display: block;
+            .evolution-stage {
+                min-width: 100%;
+            }
         }
     </style>
 </head>
@@ -596,17 +729,19 @@
             <h1>STERNENWELTEN</h1>
         </div>
         <nav>
-            <button class="nav-btn active" data-view="overview">Übersicht</button>
+            <button class="nav-btn active" data-view="main-sequence">Hauptreihe</button>
+            <button class="nav-btn" data-view="giants">Riesen & Überriesen</button>
+            <button class="nav-btn" data-view="evolution">Entwicklung</button>
             <button class="nav-btn" data-view="quiz">Quiz</button>
         </nav>
     </header>
 
     <!-- Main Content -->
     <main>
-        <!-- Stars Overview Section -->
-        <section class="stars-overview" id="overview">
-            <h2 class="section-title">Die 7 Sternklassen</h2>
-            <p class="section-subtitle">Entdecke die faszinierende Vielfalt unserer Sterne – von heißen blauen Riesen bis zu kühlen roten Zwergen</p>
+        <!-- Main Sequence Stars -->
+        <section class="stars-overview" id="mainSequence">
+            <h2 class="section-title">Sternklassen der Hauptreihe</h2>
+            <p class="section-subtitle">Die 7 Spektralklassen von heißen blauen bis zu kühlen roten Sternen</p>
 
             <div class="legend">
                 <div class="legend-item">
@@ -619,13 +754,134 @@
                 </div>
             </div>
 
-            <div class="stars-grid" id="starsGrid"></div>
+            <div class="stars-grid" id="mainSequenceGrid"></div>
+        </section>
+
+        <!-- Giants and Supergiants -->
+        <section class="stars-overview hidden" id="giants">
+            <h2 class="section-title">Riesen und Überriesen</h2>
+            <p class="section-subtitle">Mächtige Sterne in fortgeschrittenen Entwicklungsstadien</p>
+
+            <div class="stars-grid" id="giantsGrid"></div>
+
+            <div class="section-divider">
+                <div class="section-divider-title">Leuchtkraftklassen</div>
+                <div class="section-divider-subtitle">I = Überriesen • II = Helle Riesen • III = Riesen • IV = Unterriesen</div>
+            </div>
+
+            <div class="stars-grid" id="luminosityGrid"></div>
+        </section>
+
+        <!-- Stellar Evolution -->
+        <section class="stars-overview hidden" id="evolution">
+            <h2 class="section-title">Sternentwicklung</h2>
+            <p class="section-subtitle">Die Lebensreise eines Sterns - von der Geburt bis zum Ende</p>
+
+            <div class="evolution-container">
+                <div class="evolution-path">
+                    <div class="evolution-stage">
+                        <div class="evolution-number">1</div>
+                        <div class="evolution-visual evo-proto">
+                            <span class="evolution-icon">🌫️</span>
+                        </div>
+                        <div class="evolution-info">
+                            <h4>Protostern</h4>
+                            <p>Ein Stern entsteht aus einer Gas- und Staubwolke. Die Materie zieht sich zusammen und wird immer heißer.</p>
+                            <span class="mass-indicator">Masse: variabel</span>
+                        </div>
+                    </div>
+
+                    <div class="evolution-stage">
+                        <div class="evolution-number">2</div>
+                        <div class="evolution-visual evo-main">
+                            <span class="evolution-icon">☀️</span>
+                        </div>
+                        <div class="evolution-info">
+                            <h4>Hauptreihe</h4>
+                            <p>Der Stern verbrennt Wasserstoff zu Helium im Kern. Unsere Sonne befindet sich in diesem Stadium.</p>
+                            <span class="mass-indicator">Masse: 0,08 - 100 Sonnenmassen</span>
+                        </div>
+                    </div>
+
+                    <div class="evolution-stage">
+                        <div class="evolution-number">3</div>
+                        <div class="evolution-visual evo-giant">
+                            <span class="evolution-icon">🔴</span>
+                        </div>
+                        <div class="evolution-info">
+                            <h4>Roter Riese</h4>
+                            <p>Wenn der Wasserstoff im Kern erschöpft ist, dehnt sich der Stern aus und kühlt ab. Er wird rot und riesig.</p>
+                            <span class="mass-indicator">Größe: 10-1000 × Sonne</span>
+                        </div>
+                    </div>
+
+                    <div class="evolution-stage">
+                        <div class="evolution-number">4a</div>
+                        <div class="evolution-visual evo-nebula">
+                            <span class="evolution-icon">💜</span>
+                        </div>
+                        <div class="evolution-info">
+                            <h4>Planetarischer Nebel</h4>
+                            <p>Bei massearmen Sternen: Die äußeren Schichten werden abgestoßen und bilden einen leuchtenden Nebel.</p>
+                            <span class="mass-indicator">Für Sterne < 8 Sonnenmassen</span>
+                        </div>
+                    </div>
+
+                    <div class="evolution-stage">
+                        <div class="evolution-number">4b</div>
+                        <div class="evolution-visual evo-supernova">
+                            <span class="evolution-icon">💥</span>
+                        </div>
+                        <div class="evolution-info">
+                            <h4>Supernova</h4>
+                            <p>Bei massereichen Sternen: Der Kern kollabiert und explodiert mit unfassbarer Energie!</p>
+                            <span class="mass-indicator">Für Sterne > 8 Sonnenmassen</span>
+                        </div>
+                    </div>
+
+                    <div class="evolution-stage">
+                        <div class="evolution-number">5a</div>
+                        <div class="evolution-visual evo-white">
+                            <span class="evolution-icon">⚪</span>
+                        </div>
+                        <div class="evolution-info">
+                            <h4>Weißer Zwerg</h4>
+                            <p>Der heiße, kompakte Überrest eines sonnenähnlichen Sterns. Er kühlt langsam über Milliarden Jahre ab.</p>
+                            <span class="mass-indicator">Masse: 0,17 - 1,4 Sonnenmassen</span>
+                        </div>
+                    </div>
+
+                    <div class="evolution-stage">
+                        <div class="evolution-number">5b</div>
+                        <div class="evolution-visual evo-neutron">
+                            <span class="evolution-icon">🟡</span>
+                        </div>
+                        <div class="evolution-info">
+                            <h4>Neutronenstern</h4>
+                            <p>Extrem dichter Überrest einer Supernova. Ein Teelöffel Materie würde auf der Erde Millionen Tonnen wiegen!</p>
+                            <span class="mass-indicator">Masse: 1,4 - 3 Sonnenmassen</span>
+                        </div>
+                    </div>
+
+                    <div class="evolution-stage">
+                        <div class="evolution-number">5c</div>
+                        <div class="evolution-visual evo-blackhole">
+                            <span class="evolution-icon">⚫</span>
+                        </div>
+                        <div class="evolution-info">
+                            <h4>Schwarzes Loch</h4>
+                            <p>Der extremste Überrest: Die Masse ist so komprimiert, dass nicht einmal Licht entkommen kann.</p>
+                            <span class="mass-indicator">Masse: > 3 Sonnenmassen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Quiz Section -->
         <section class="quiz-section" id="quiz">
             <h2 class="section-title">Teste dein Wissen</h2>
-            <p class="section-subtitle">Beantworte Fragen zu den Sternklassen und finde heraus, wie viel du weißt!</p>
+            <p class="section-subtitle">Beantworte Fragen zu Sternklassen, Riesen und Sternentwicklung!</p>
 
             <div class="quiz-container" id="quizContainer">
                 <div class="quiz-header">
@@ -656,8 +912,8 @@
     </footer>
 
     <script>
-        // Sterndaten
-        const starsData = [
+        // Hauptreihen-Sterndaten
+        const mainSequenceStars = [
             {
                 class: 'O',
                 name: 'Blauer Überriese',
@@ -667,7 +923,8 @@
                 size: 150,
                 sizeRelative: 1,
                 lifetime: '1 - 10 Mio. Jahre',
-                examples: ['Alnitak', 'Mintaka', 'Alnilam']
+                examples: ['Alnitak', 'Mintaka', 'Alnilam'],
+                luminosity: 'V (Hauptreihe)'
             },
             {
                 class: 'B',
@@ -678,7 +935,8 @@
                 size: 25,
                 sizeRelative: 0.17,
                 lifetime: '10 - 100 Mio. Jahre',
-                examples: ['Rigel', 'Spica', 'Bellatrix']
+                examples: ['Rigel', 'Spica', 'Bellatrix'],
+                luminosity: 'V (Hauptreihe)'
             },
             {
                 class: 'A',
@@ -689,7 +947,8 @@
                 size: 4,
                 sizeRelative: 0.027,
                 lifetime: '100 - 500 Mio. Jahre',
-                examples: ['Sirius', 'Vega', 'Altair']
+                examples: ['Sirius', 'Vega', 'Altair'],
+                luminosity: 'V (Hauptreihe)'
             },
             {
                 class: 'F',
@@ -700,7 +959,8 @@
                 size: 2,
                 sizeRelative: 0.013,
                 lifetime: '500 - 2.000 Mio. Jahre',
-                examples: ['Procyon', 'Canopus', 'Polaris']
+                examples: ['Procyon', 'Canopus', 'Polaris'],
+                luminosity: 'V (Hauptreihe)'
             },
             {
                 class: 'G',
@@ -711,7 +971,8 @@
                 size: 1,
                 sizeRelative: 0.007,
                 lifetime: '2.000 - 10.000 Mio. Jahre',
-                examples: ['Sonne', 'Alpha Centauri A', 'Capella']
+                examples: ['Sonne', 'Alpha Centauri A', 'Capella'],
+                luminosity: 'V (Hauptreihe)'
             },
             {
                 class: 'K',
@@ -722,7 +983,8 @@
                 size: 0.8,
                 sizeRelative: 0.005,
                 lifetime: '10.000 - 50.000 Mio. Jahre',
-                examples: ['Arcturus', 'Aldebaran', 'Epsilon Eridani']
+                examples: ['Arcturus', 'Aldebaran', 'Epsilon Eridani'],
+                luminosity: 'V (Hauptreihe)'
             },
             {
                 class: 'M',
@@ -733,78 +995,125 @@
                 size: 0.5,
                 sizeRelative: 0.003,
                 lifetime: '50.000 - 100.000+ Mio. J.',
-                examples: ['Betelgeuse', 'Antares', 'Proxima Centauri']
+                examples: ['Proxima Centauri', 'Barnards Pfeilstern', 'Gliese 667'],
+                luminosity: 'V (Hauptreihe)'
             }
         ];
 
-        // Quizfragen
-        const quizQuestions = [
+        // Riesen und Überriesen
+        const giantsStars = [
             {
-                question: 'Welche Sternklasse hat die höchste Oberflächentemperatur?',
-                options: ['Klasse O', 'Klasse M', 'Klasse G', 'Klasse K'],
-                correct: 0
+                class: 'M',
+                name: 'Roter Überriese',
+                color: '#ff3030',
+                colorGlow: 'rgba(255, 48, 48, 0.4)',
+                temperature: '3.000 - 4.000 K',
+                size: 1500,
+                sizeRelative: 1,
+                lifetime: '1 - 50 Mio. Jahre',
+                examples: ['Beteigeuze', 'Antares', 'UY Scuti'],
+                luminosity: 'I (Überriese)'
             },
             {
-                question: 'Welche Farbe hat ein Stern der Klasse M?',
-                options: ['Blau', 'Weiß', 'Rot', 'Gelb'],
-                correct: 2
+                class: 'K',
+                name: 'Roter Riese',
+                color: '#ff6f3f',
+                colorGlow: 'rgba(255, 111, 63, 0.4)',
+                temperature: '3.500 - 5.000 K',
+                size: 100,
+                sizeRelative: 0.067,
+                lifetime: '10 - 500 Mio. Jahre',
+                examples: ['Arcturus', 'Aldebaran', 'R Castor'],
+                luminosity: 'III (Riese)'
             },
             {
-                question: 'Zu welcher Klasse gehört unsere Sonne?',
-                options: ['Klasse G', 'Klasse F', 'Klasse K', 'Klasse A'],
-                correct: 0
+                class: 'G',
+                name: 'Gelber Riese',
+                color: '#ffd700',
+                colorGlow: 'rgba(255, 215, 0, 0.4)',
+                temperature: '4.500 - 6.000 K',
+                size: 50,
+                sizeRelative: 0.033,
+                lifetime: '100 - 500 Mio. Jahre',
+                examples: ['Polux', 'Capella', 'Delta Geminorum'],
+                luminosity: 'III (Riese)'
             },
             {
-                question: 'Welche Sternklasse lebt am längsten?',
-                options: ['Klasse O', 'Klasse B', 'Klasse M', 'Klasse A'],
-                correct: 2
+                class: 'B',
+                name: 'Blauer Überriese',
+                color: '#4d94ff',
+                colorGlow: 'rgba(77, 148, 255, 0.4)',
+                temperature: '10.000 - 30.000 K',
+                size: 200,
+                sizeRelative: 0.133,
+                lifetime: '1 - 20 Mio. Jahre',
+                examples: ['Rigel', 'Alnilam', 'Naos'],
+                luminosity: 'I (Überriese)'
             },
             {
-                question: 'Welche Sternklasse ist am seltensten?',
-                options: ['Klasse M', 'Klasse G', 'Klasse O', 'Klasse K'],
-                correct: 2
+                class: 'A',
+                name: 'Heller Riese',
+                color: '#e0e0ff',
+                colorGlow: 'rgba(224, 224, 255, 0.4)',
+                temperature: '7.500 - 10.000 K',
+                size: 80,
+                sizeRelative: 0.053,
+                lifetime: '50 - 300 Mio. Jahre',
+                examples: ['Canopus', 'Mirzam', 'Alkaid'],
+                luminosity: 'II (Heller Riese)'
             },
             {
-                question: 'Welche Farbe hat ein Stern der Klasse O?',
-                options: ['Rot', 'Gelb', 'Blau', 'Orange'],
-                correct: 2
-            },
-            {
-                question: 'Welcher Stern ist ein Beispiel für Klasse B?',
-                options: ['Sirius', 'Rigel', 'Beteigeuze', 'Arcturus'],
-                correct: 1
-            },
-            {
-                question: 'Welche Sternklasse hat die kühlste Temperatur?',
-                options: ['Klasse M', 'Klasse K', 'Klasse G', 'Klasse F'],
-                correct: 0
-            },
-            {
-                question: 'Wie groß ist ein typischer G-Stern im Vergleich zur Sonne?',
-                options: ['0,5-fach', '1-fach (ähnlich)', '5-fach', '20-fach'],
-                correct: 1
-            },
-            {
-                question: 'Welcher Stern ist ein roter Überriese?',
-                options: ['Rigel', 'Sirius', 'Beteigeuze', 'Vega'],
-                correct: 2
-            },
-            {
-                question: 'Welche Sternklasse hat die kürzeste Lebensdauer?',
-                options: ['Klasse M', 'Klasse G', 'Klasse O', 'Klasse K'],
-                correct: 2
-            },
-            {
-                question: 'Welche Farbe hat ein Stern der Klasse K?',
-                options: ['Blau', 'Orange', 'Weiß', 'Grün'],
-                correct: 1
+                class: 'F',
+                name: 'Unterriese',
+                color: '#fff8dc',
+                colorGlow: 'rgba(255, 248, 220, 0.4)',
+                temperature: '5.500 - 7.000 K',
+                size: 8,
+                sizeRelative: 0.005,
+                lifetime: '500 - 2.000 Mio. Jahre',
+                examples: ['Procyon', 'Gamma Draconis', 'Zeta Aurigae'],
+                luminosity: 'IV (Unterriese)'
             }
+        ];
+
+        // Leuchtklassen Erklärung
+        const luminosityClasses = [
+            { class: 'I', name: 'Überriesen', color: '#ff5252', description: 'Die größten und hellsten Sterne. Sehr selten.' },
+            { class: 'II', name: 'Helle Riesen', color: '#ff9800', description: 'Heller als normale Riesen, aber kleiner als Überriesen.' },
+            { class: 'III', name: 'Riesen', color: '#ffd54f', description: 'Sterne, die ihren Wasserstoffvorrat im Kern erschöpft haben.' },
+            { class: 'IV', name: 'Unterriesen', color: '#8bc34a', description: 'Übergangsstadium zwischen Hauptreihe und Riesen.' },
+            { class: 'V', name: 'Hauptreihensterne', color: '#4fc3f7', description: 'Normale Sterne, die Wasserstoff verbrennen.' }
+        ];
+
+        // Erweiterte Quizfragen
+        const quizQuestions = [
+            { question: 'Welche Sternklasse hat die höchste Oberflächentemperatur?', options: ['Klasse O', 'Klasse M', 'Klasse G', 'Klasse K'], correct: 0 },
+            { question: 'Welche Farbe hat ein Stern der Klasse M?', options: ['Blau', 'Weiß', 'Rot', 'Gelb'], correct: 2 },
+            { question: 'Zu welcher Klasse gehört unsere Sonne?', options: ['Klasse G', 'Klasse F', 'Klasse K', 'Klasse A'], correct: 0 },
+            { question: 'Welche Sternklasse lebt am längsten?', options: ['Klasse O', 'Klasse B', 'Klasse M', 'Klasse A'], correct: 2 },
+            { question: 'Welche Sternklasse ist am seltensten?', options: ['Klasse M', 'Klasse G', 'Klasse O', 'Klasse K'], correct: 2 },
+            { question: 'Welche Farbe hat ein Stern der Klasse O?', options: ['Rot', 'Gelb', 'Blau', 'Orange'], correct: 2 },
+            { question: 'Welcher Stern ist ein roter Überriese?', options: ['Rigel', 'Sirius', 'Beteigeuze', 'Vega'], correct: 2 },
+            { question: 'Welcher Stern ist ein Beispiel für Klasse M (roter Zwerg)?', options: ['Sirius', 'Proxima Centauri', 'Arcturus', 'Vega'], correct: 1 },
+            { question: 'Welche Leuchtkraftklasse sind Überriesen?', options: ['Klasse V', 'Klasse III', 'Klasse I', 'Klasse IV'], correct: 2 },
+            { question: 'Was entsteht aus einem massearmen Stern am Ende seines Lebens?', options: ['Supernova', 'Schwarzes Loch', 'Weißer Zwerg', 'Neutronenstern'], correct: 2 },
+            { question: 'Was ist eine Supernova?', options: ['Ein besonders heller Stern', 'Eine Sternenexplosion', 'Ein Planet', 'Ein Komet'], correct: 1 },
+            { question: 'Welcher Stern ist ein roter Riese (Klasse K, Leuchtkraft III)?', options: ['Sirius', 'Arcturus', 'Vega', 'Rigel'], correct: 1 },
+            { question: 'Wie groß kann ein roter Überriese werden?', options: ['So groß wie die Sonne', '10× Sonne', 'Über 1000× Sonne', 'Nicht größer als Jupiter'], correct: 2 },
+            { question: 'Was bleibt nach einer Supernova eines massereichen Sterns übrig?', options: ['Weißer Zwerg', 'Nebelfleck', 'Neutronenstern oder Schwarzes Loch', 'Nichts'], correct: 2 },
+            { question: 'Welches ist das Endstadium unserer Sonne?', options: ['Neutronenstern', 'Schwarzes Loch', 'Weißer Zwerg', 'Roter Riese'], correct: 2 }
         ];
 
         // DOM Elemente
-        const starsGrid = document.getElementById('starsGrid');
-        const overviewSection = document.getElementById('overview');
-        const quizSection = document.getElementById('quiz');
+        const mainSequenceGrid = document.getElementById('mainSequenceGrid');
+        const giantsGrid = document.getElementById('giantsGrid');
+        const luminosityGrid = document.getElementById('luminosityGrid');
+        const sections = {
+            'main-sequence': document.getElementById('mainSequence'),
+            'giants': document.getElementById('giants'),
+            'evolution': document.getElementById('evolution'),
+            'quiz': document.getElementById('quiz')
+        };
         const navBtns = document.querySelectorAll('.nav-btn');
 
         // Quiz Variablen
@@ -812,66 +1121,90 @@
         let score = 0;
         let selectedQuestions = [];
 
-        // Sternkarten erstellen
-        function createStarCards() {
-            starsGrid.innerHTML = '';
+        // Sternkarte erstellen
+        function createStarCard(star, isGiant = false) {
+            const card = document.createElement('div');
+            card.className = 'star-card';
+            card.style.setProperty('--star-color', star.color);
+            card.style.setProperty('--star-color-glow', star.colorGlow);
             
-            starsData.forEach(star => {
-                const card = document.createElement('div');
-                card.className = 'star-card';
-                card.style.setProperty('--star-color', star.color);
-                card.style.setProperty('--star-color-glow', star.colorGlow);
-                
-                const sizePercent = Math.min(100, (star.size / 150) * 100);
-                
-                card.innerHTML = `
-                    <div class="star-visual">
-                        <div class="star-circle" style="
-                            width: ${30 + sizePercent * 0.7}px; 
-                            height: ${30 + sizePercent * 0.7}px;
-                            background: radial-gradient(circle at 30% 30%, ${star.color}, ${adjustColor(star.color, -50)} 60%, transparent 100%);
-                            box-shadow: 0 0 ${20 + sizePercent * 0.5}px ${star.color}, 0 0 ${40 + sizePercent}px ${star.colorGlow};
-                        "></div>
+            const sizePercent = Math.min(100, (star.size / 1500) * 100);
+            
+            card.innerHTML = `
+                <div class="star-visual">
+                    <div class="star-circle" style="
+                        width: ${30 + sizePercent * 0.7}px; 
+                        height: ${30 + sizePercent * 0.7}px;
+                        background: radial-gradient(circle at 30% 30%, ${star.color}, ${adjustColor(star.color, -50)} 60%, transparent 100%);
+                        box-shadow: 0 0 ${20 + sizePercent * 0.5}px ${star.color}, 0 0 ${40 + sizePercent}px ${star.colorGlow};
+                    "></div>
+                </div>
+                <div class="luminosity-class">${star.luminosity || 'V'}</div>
+                <div class="star-class" style="color: ${star.color}">${star.class}</div>
+                <div class="star-name">${star.name}</div>
+                <div class="star-info">
+                    <div class="info-row">
+                        <span class="info-label">Temperatur</span>
+                        <span class="info-value">${star.temperature}</span>
                     </div>
-                    <div class="star-class" style="color: ${star.color}">${star.class}</div>
-                    <div class="star-name">${star.name}</div>
-                    <div class="star-info">
-                        <div class="info-row">
-                            <span class="info-label">Temperatur</span>
-                            <span class="info-value">${star.temperature}</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Größe (Ø Sonne)</span>
-                            <span class="info-value">${star.size}×</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Lebensdauer</span>
-                            <span class="info-value">${star.lifetime}</span>
-                        </div>
+                    <div class="info-row">
+                        <span class="info-label">Größe (Ø Sonne)</span>
+                        <span class="info-value">${star.size}×</span>
                     </div>
-                    <div class="size-bar-container">
-                        <div class="size-bar">
-                            <div class="size-bar-fill" style="width: ${sizePercent}%"></div>
-                        </div>
+                    <div class="info-row">
+                        <span class="info-label">Lebensdauer</span>
+                        <span class="info-value">${star.lifetime}</span>
                     </div>
-                    <div class="example-stars">
-                        <div class="example-label">Bekannte Sterne</div>
-                        <div class="example-list">
-                            ${star.examples.map(e => `<span class="example-tag">${e}</span>`).join('')}
-                        </div>
+                </div>
+                <div class="size-bar-container">
+                    <div class="size-bar-label">Relativgröße</div>
+                    <div class="size-bar">
+                        <div class="size-bar-fill" style="width: ${sizePercent}%"></div>
                     </div>
-                `;
-                
-                starsGrid.appendChild(card);
-            });
+                </div>
+                <div class="example-stars">
+                    <div class="example-label">Beispiele</div>
+                    <div class="example-list">
+                        ${star.examples.map(e => `<span class="example-tag">${e}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Leuchtkarten erstellen
+        function createLuminosityCard(lc) {
+            const card = document.createElement('div');
+            card.className = 'star-card';
+            card.style.setProperty('--star-color', lc.color);
+            card.style.setProperty('--star-color-glow', `${lc.color}40`);
+            
+            card.innerHTML = `
+                <div class="star-visual">
+                    <div class="star-circle" style="
+                        width: 60px; 
+                        height: 60px;
+                        background: radial-gradient(circle at 30% 30%, ${lc.color}, ${adjustColor(lc.color, -50)} 60%, transparent 100%);
+                        box-shadow: 0 0 25px ${lc.color}80;
+                    "></div>
+                </div>
+                <div class="star-class" style="color: ${lc.color}">Klasse ${lc.class}</div>
+                <div class="star-name">${lc.name}</div>
+                <div class="star-info">
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5;">${lc.description}</p>
+                </div>
+            `;
+            
+            return card;
         }
 
         // Farbe abdunkeln
         function adjustColor(color, amount) {
             const hex = color.replace('#', '');
-            const r = Math.max(0, parseInt(hex.substr(0, 2), 16) + amount);
-            const g = Math.max(0, parseInt(hex.substr(2, 2), 16) + amount);
-            const b = Math.max(0, parseInt(hex.substr(4, 2), 16) + amount);
+            const r = Math.max(0, Math.min(255, parseInt(hex.substr(0, 2), 16) + amount));
+            const g = Math.max(0, Math.min(255, parseInt(hex.substr(2, 2), 16) + amount));
+            const b = Math.max(0, Math.min(255, parseInt(hex.substr(4, 2), 16) + amount));
             return `rgb(${r}, ${g}, ${b})`;
         }
 
@@ -883,13 +1216,18 @@
                 navBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 
-                if (view === 'overview') {
-                    overviewSection.classList.remove('hidden');
-                    quizSection.classList.remove('active');
-                } else {
-                    overviewSection.classList.add('hidden');
-                    quizSection.classList.add('active');
+                // Alle Sektionen verstecken
+                Object.values(sections).forEach(s => {
+                    if (s.id !== 'quiz') s.classList.add('hidden');
+                    if (s.id === 'quiz') s.classList.remove('active');
+                });
+                
+                // Gewählte Sektion zeigen
+                if (view === 'quiz') {
+                    sections['quiz'].classList.add('active');
                     startQuiz();
+                } else if (sections[view]) {
+                    sections[view].classList.remove('hidden');
                 }
             });
         });
@@ -1020,8 +1358,29 @@
         }
 
         // Initialisierung
-        createStarCards();
-        createStarField();
+        function init() {
+            // Hauptreihensterne
+            mainSequenceGrid.innerHTML = '';
+            mainSequenceStars.forEach(star => {
+                mainSequenceGrid.appendChild(createStarCard(star));
+            });
+
+            // Riesen und Überriesen
+            giantsGrid.innerHTML = '';
+            giantsStars.forEach(star => {
+                giantsGrid.appendChild(createStarCard(star, true));
+            });
+
+            // Leuchtklassen
+            luminosityGrid.innerHTML = '';
+            luminosityClasses.forEach(lc => {
+                luminosityGrid.appendChild(createLuminosityCard(lc));
+            });
+
+            createStarField();
+        }
+
+        init();
     </script>
 </body>
 </html>
