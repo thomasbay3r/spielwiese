@@ -3,31 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sternenwelten - Entdecke die Vielfalt der Sterne</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Sternenwelten - Lerne die Sterne kennen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #050510;
-            --bg-secondary: #0a0a1a;
-            --bg-card: #12122a;
-            --bg-card-hover: #1a1a3e;
-            --text-primary: #e8e8f0;
-            --text-secondary: #a0a0b8;
-            --accent-blue: #4fc3f7;
-            --accent-purple: #b388ff;
-            --accent-gold: #ffd54f;
-            --accent-red: #ff5252;
-            --success: #69f0ae;
-            --error: #ff5252;
+            /* Harmonisches Farbschema */
+            --bg-deep: #0a0e17;
+            --bg-surface: #111827;
+            --bg-elevated: #1e293b;
+            --bg-card: #1a2332;
             
-            /* Sternfarben */
-            --star-o: #9bb0ff;
-            --star-b: #aabfff;
-            --star-a: #cad7ff;
-            --star-f: #f8f7ff;
-            --star-g: #fff4ea;
-            --star-k: #ffd2a1;
-            --star-m: #ff6f3f;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-tertiary: #06b6d4;
+            --accent-warm: #f59e0b;
+            --accent-cool: #3b82f6;
+            
+            /* Sternspektrum-Farben */
+            --star-o: #6b8cff;
+            --star-b: #8ba4ff;
+            --star-a: #c0cfff;
+            --star-f: #f0ebe3;
+            --star-g: #fff5e6;
+            --star-k: #ffd9b3;
+            --star-m: #ff8c5a;
+            
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+            --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.2);
         }
 
         * {
@@ -37,845 +54,410 @@
         }
 
         body {
-            font-family: 'Exo 2', sans-serif;
-            background: var(--bg-primary);
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-deep);
             color: var(--text-primary);
             min-height: 100vh;
-            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Animated Star Background */
-        .star-field {
+        /* Hintergrund */
+        .cosmos {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+            inset: 0;
             z-index: 0;
+            overflow: hidden;
         }
 
-        .star {
+        .stars-bg {
             position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle var(--duration) ease-in-out infinite;
+            inset: 0;
+            background-image: 
+                radial-gradient(1px 1px at 20px 30px, white, transparent),
+                radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1.5px 1.5px at 90px 40px, white, transparent),
+                radial-gradient(1px 1px at 160px 120px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1.5px 1.5px at 230px 80px, white, transparent),
+                radial-gradient(1px 1px at 300px 200px, rgba(255,255,255,0.7), transparent);
+            background-size: 350px 350px;
+            animation: twinkle 8s ease-in-out infinite;
         }
 
         @keyframes twinkle {
-            0%, 100% { opacity: var(--base-opacity); transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        /* Shooting stars */
-        .shooting-star {
-            position: absolute;
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, white, transparent);
-            animation: shoot 3s linear infinite;
-            opacity: 0;
-        }
-
-        @keyframes shoot {
-            0% { transform: translateX(-100px) translateY(0); opacity: 0; }
-            10% { opacity: 1; }
-            30% { opacity: 0; }
-            100% { transform: translateX(calc(100vw + 100px)) translateY(100px); opacity: 0; }
-        }
-
-        /* Nebula effect */
-        .nebula {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(ellipse at 20% 80%, rgba(79, 195, 247, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(179, 136, 255, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(255, 213, 79, 0.03) 0%, transparent 60%);
-            pointer-events: none;
-            z-index: 0;
-            animation: nebula-pulse 10s ease-in-out infinite;
-        }
-
-        @keyframes nebula-pulse {
             0%, 100% { opacity: 0.8; }
             50% { opacity: 1; }
+        }
+
+        .nebula-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 30% at 50% 80%, rgba(6, 182, 212, 0.04) 0%, transparent 50%);
+            animation: nebula-float 20s ease-in-out infinite;
+        }
+
+        @keyframes nebula-float {
+            0%, 100% { transform: scale(1) translateY(0); }
+            50% { transform: scale(1.05) translateY(-10px); }
         }
 
         /* Header */
         header {
             position: relative;
-            z-index: 10;
+            z-index: 100;
+            background: linear-gradient(180deg, rgba(10, 14, 23, 0.95) 0%, transparent 100%);
             padding: 1.5rem 2rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            background: linear-gradient(180deg, rgba(5,5,16,0.95) 0%, transparent 100%);
-            backdrop-filter: blur(10px);
+            justify-content: space-between;
+            gap: 2rem;
             flex-wrap: wrap;
-            gap: 1rem;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
         }
 
         .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: radial-gradient(circle, var(--accent-gold) 0%, #ff6f3f 50%, transparent 70%);
-            border-radius: 50%;
-            animation: pulse-glow 3s ease-in-out infinite;
-            box-shadow: 0 0 30px rgba(255, 213, 79, 0.5);
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(255, 213, 79, 0.5); }
-            50% { transform: scale(1.1); box-shadow: 0 0 50px rgba(255, 213, 79, 0.8); }
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-warm), var(--accent-primary));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-glow);
         }
 
         .logo h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-blue));
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 2px;
         }
 
+        /* Fortschritts-Anzeige */
+        .progress-indicator {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--bg-surface);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 6px;
+            background: var(--bg-elevated);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Navigation */
         nav {
             display: flex;
             gap: 0.5rem;
             flex-wrap: wrap;
-            justify-content: center;
         }
 
-        .nav-btn {
-            font-family: 'Orbitron', sans-serif;
-            padding: 0.75rem 1.5rem;
+        .nav-item {
+            padding: 0.625rem 1.25rem;
             background: transparent;
-            border: 2px solid var(--accent-blue);
-            color: var(--accent-blue);
-            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 4px;
-            letter-spacing: 1px;
+            transition: all 0.25s ease;
         }
 
-        .nav-btn:hover, .nav-btn.active {
-            background: var(--accent-blue);
-            color: var(--bg-primary);
-            box-shadow: 0 0 20px rgba(79, 195, 247, 0.5);
+        .nav-item:hover {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            border-color: rgba(255,255,255,0.15);
         }
 
-        /* Main Content */
+        .nav-item.active {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+        }
+
+        /* Hauptbereich */
         main {
             position: relative;
-            z-index: 5;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 2rem;
-            max-width: 1400px;
+        }
+
+        /* Sektionen */
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Überschriften */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
             margin: 0 auto;
         }
 
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
-
-        /* Star Cards Grid */
-        .stars-grid {
+        /* Lernkarten Grid */
+        .learn-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 3rem;
         }
 
-        .star-card {
+        /* Lernkarte */
+        .learn-card {
             background: var(--bg-card);
-            border-radius: 16px;
-            padding: 1.5rem;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
         }
 
-        .star-card::before {
+        .learn-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 3px;
-            background: var(--star-color);
+            background: var(--card-color);
             opacity: 0.8;
         }
 
-        .star-card:hover {
-            transform: translateY(-8px);
-            background: var(--bg-card-hover);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px var(--star-color-glow);
-            border-color: var(--star-color);
+        .learn-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg), 0 0 30px var(--card-glow);
+            border-color: rgba(255,255,255,0.1);
         }
 
-        /* Animated star on hover */
-        .star-card:hover .star-circle {
-            animation: star-hover-pulse 0.5s ease-in-out infinite;
-        }
-
-        @keyframes star-hover-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-        }
-
-        .star-visual {
-            display: flex;
-            justify-content: center;
+        .card-badge {
+            display: inline-flex;
             align-items: center;
-            margin-bottom: 1.5rem;
-            height: 100px;
-            position: relative;
-        }
-
-        .star-circle {
-            border-radius: 50%;
-            animation: star-pulse 2s ease-in-out infinite;
-            position: relative;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        @keyframes star-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        /* Corona effect */
-        .corona {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            animation: corona-rotate 4s linear infinite;
-            opacity: 0.6;
-        }
-
-        @keyframes corona-rotate {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        .star-class {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--star-color);
-            text-shadow: 0 0 20px var(--star-color);
-            margin-bottom: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .star-card:hover .star-class {
-            transform: scale(1.1);
-            text-shadow: 0 0 30px var(--star-color);
-        }
-
-        .star-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-primary);
+            gap: 0.375rem;
+            padding: 0.25rem 0.625rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
             margin-bottom: 1rem;
-            transition: all 0.3s ease;
+            font-family: 'Space Mono', monospace;
         }
 
-        .luminosity-class {
-            font-size: 0.85rem;
-            color: var(--accent-purple);
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
             margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .star-info {
+        .card-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .card-stats {
+            display: flex;
+            gap: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .stat {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.125rem;
         }
 
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s ease;
+        .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
         }
 
-        .star-card:hover .info-row {
-            border-color: rgba(255,255,255,0.15);
-        }
-
-        .info-label {
-            color: var(--text-secondary);
+        .stat-value {
+            font-family: 'Space Mono', monospace;
             font-size: 0.85rem;
-        }
-
-        .info-value {
             font-weight: 600;
-            color: var(--text-primary);
-            font-size: 0.95rem;
         }
 
-        .example-stars {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
+        /* Stern-Visual */
+        .star-preview {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
         }
 
-        .star-card:hover .example-stars {
-            border-color: rgba(255,255,255,0.2);
+        .star-orb {
+            border-radius: 50%;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .example-label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
+        .learn-card:hover .star-orb {
+            transform: scale(1.1);
+        }
+
+        /* Info-Box */
+        .info-box {
+            background: var(--bg-surface);
+            border-left: 3px solid var(--accent-primary);
+            padding: 1.25rem 1.5rem;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: 2rem 0;
+        }
+
+        .info-box h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--accent-primary);
             margin-bottom: 0.5rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.05em;
         }
 
-        .example-list {
+        .info-box p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Lernfortschritt-Karten */
+        .progress-card {
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-surface));
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .progress-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: var(--radius-lg);
             display: flex;
-            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .progress-details h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-details p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .module-progress {
+            display: flex;
             gap: 0.5rem;
         }
 
-        .example-tag {
-            font-size: 0.8rem;
-            padding: 0.3rem 0.7rem;
-            background: rgba(79, 195, 247, 0.1);
-            border-radius: 20px;
-            color: var(--accent-blue);
-            animation: tag-float 3s ease-in-out infinite;
-        }
-
-        .example-tag:nth-child(2) { animation-delay: 0.5s; }
-        .example-tag:nth-child(3) { animation-delay: 1s; }
-
-        @keyframes tag-float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
-        }
-
-        /* Size comparison bar */
-        .size-bar-container {
-            margin-top: 1rem;
-            overflow: hidden;
-        }
-
-        .size-bar-label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.3rem;
-        }
-
-        .size-bar {
-            height: 8px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .size-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-blue), var(--star-color));
-            border-radius: 4px;
-            transition: width 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            position: relative;
-        }
-
-        .size-bar-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* Section Divider */
-        .section-divider {
-            margin: 4rem 0;
-            padding: 2rem 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .section-divider-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            text-align: center;
-            color: var(--accent-purple);
-            margin-bottom: 0.5rem;
-        }
-
-        .section-divider-subtitle {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* Evolution Timeline - Animated */
-        .evolution-container {
-            margin: 2rem 0;
-            position: relative;
-        }
-
-        .evolution-path {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            position: relative;
-        }
-
-        @media (min-width: 900px) {
-            .evolution-path {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-
-        /* Connection line */
-        .evolution-path::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, var(--accent-purple), var(--accent-blue), var(--accent-gold), var(--accent-red));
-            transform: translateX(-50%);
-            opacity: 0.3;
-            z-index: 0;
-        }
-
-        @media (max-width: 899px) {
-            .evolution-path::before {
-                display: none;
-            }
-        }
-
-        .evolution-stage {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            background: var(--bg-card);
-            padding: 1.5rem;
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.05);
-            flex: 1;
-            min-width: 280px;
-            max-width: 400px;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            position: relative;
-            z-index: 1;
-            animation: stage-float 6s ease-in-out infinite;
-        }
-
-        .evolution-stage:nth-child(odd) { animation-delay: 0.5s; }
-        .evolution-stage:nth-child(even) { animation-delay: 1s; }
-
-        @keyframes stage-float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .evolution-stage:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: var(--accent-purple);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(179, 136, 255, 0.3);
-            z-index: 10;
-            animation: none;
-        }
-
-        .evolution-number {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--accent-purple);
-            min-width: 50px;
-            transition: all 0.3s ease;
-        }
-
-        .evolution-stage:hover .evolution-number {
-            transform: scale(1.2);
-            color: var(--accent-gold);
-        }
-
-        .evolution-visual {
-            width: 60px;
-            height: 60px;
+        .module-dot {
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: all 0.5s ease;
-        }
-
-        .evolution-stage:hover .evolution-visual {
-            transform: scale(1.2) rotate(10deg);
-        }
-
-        .evolution-icon {
-            font-size: 1.8rem;
+            background: var(--bg-elevated);
+            border: 2px solid rgba(255,255,255,0.1);
             transition: all 0.3s ease;
         }
 
-        .evolution-stage:hover .evolution-icon {
-            transform: scale(1.2);
+        .module-dot.completed {
+            background: var(--success);
+            border-color: var(--success);
         }
 
-        .evolution-info h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-            transition: all 0.3s ease;
+        .module-dot.current {
+            border-color: var(--accent-primary);
+            animation: pulse 2s infinite;
         }
 
-        .evolution-stage:hover .evolution-info h4 {
-            color: var(--accent-purple);
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
         }
 
-        .evolution-info p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.4;
-            transition: all 0.3s ease;
-        }
-
-        .evolution-info {
-            transition: all 0.3s ease;
-        }
-
-        .evolution-stage:hover .evolution-info p {
-            color: var(--text-primary);
-        }
-
-        /* Evolution Colors with Animations */
-        .evo-proto { 
-            background: radial-gradient(circle, #ff9800, #ff5722); 
-            box-shadow: 0 0 20px rgba(255, 152, 0, 0.5);
-            animation: proto-glow 2s ease-in-out infinite;
-        }
-
-        @keyframes proto-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 152, 0, 0.5); }
-            50% { box-shadow: 0 0 35px rgba(255, 152, 0, 0.8); }
-        }
-
-        .evo-main { 
-            background: radial-gradient(circle, #fff4ea, #ffd2a1); 
-            box-shadow: 0 0 20px rgba(255, 244, 234, 0.4); 
-            animation: main-glow 3s ease-in-out infinite;
-        }
-
-        @keyframes main-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 244, 234, 0.4); transform: scale(1); }
-            50% { box-shadow: 0 0 30px rgba(255, 244, 234, 0.7); transform: scale(1.05); }
-        }
-
-        .evo-giant { 
-            background: radial-gradient(circle, #ff6f3f, #ff5252); 
-            box-shadow: 0 0 25px rgba(255, 111, 63, 0.6);
-            animation: giant-pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes giant-pulse {
-            0%, 100% { box-shadow: 0 0 25px rgba(255, 111, 63, 0.6); transform: scale(1); }
-            50% { box-shadow: 0 0 40px rgba(255, 111, 63, 0.9); transform: scale(1.08); }
-        }
-
-        .evo-nebula { 
-            background: radial-gradient(circle, #e040fb, #7c4dff); 
-            box-shadow: 0 0 20px rgba(224, 64, 251, 0.5);
-            animation: nebula-expand 3s ease-in-out infinite;
-        }
-
-        @keyframes nebula-expand {
-            0%, 100% { box-shadow: 0 0 20px rgba(224, 64, 251, 0.5); transform: scale(1); }
-            50% { box-shadow: 0 0 35px rgba(224, 64, 251, 0.8); transform: scale(1.1); }
-        }
-
-        .evo-white { 
-            background: radial-gradient(circle, #ffffff, #e3f2fd); 
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-            animation: white-twinkle 1.5s ease-in-out infinite;
-        }
-
-        @keyframes white-twinkle {
-            0%, 100% { box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); }
-            50% { box-shadow: 0 0 25px rgba(255, 255, 255, 0.9); }
-        }
-
-        .evo-supernova { 
-            background: radial-gradient(circle, #ffff00, #ff9800); 
-            box-shadow: 0 0 30px rgba(255, 235, 59, 0.7); 
-            animation: supernova-flash 0.8s infinite;
-        }
-
-        @keyframes supernova-flash {
-            0%, 100% { 
-                box-shadow: 0 0 30px rgba(255, 235, 59, 0.7); 
-                transform: scale(1);
-                filter: brightness(1);
-            }
-            50% { 
-                box-shadow: 0 0 50px rgba(255, 235, 59, 1); 
-                transform: scale(1.15);
-                filter: brightness(1.3);
-            }
-        }
-
-        .evo-neutron { 
-            background: radial-gradient(circle, #64b5f6, #1976d2); 
-            box-shadow: 0 0 15px rgba(100, 181, 246, 0.5);
-            animation: neutron-spin 2s linear infinite;
-        }
-
-        @keyframes neutron-spin {
-            0% { box-shadow: 0 0 15px rgba(100, 181, 246, 0.5); }
-            25% { box-shadow: 0 0 25px rgba(100, 181, 246, 0.8), 0 0 15px rgba(100, 181, 246, 0.5) inset; }
-            50% { box-shadow: 0 0 15px rgba(100, 181, 246, 0.5); }
-            75% { box-shadow: 0 0 25px rgba(100, 181, 246, 0.8), 0 0 15px rgba(100, 181, 246, 0.5) inset; }
-            100% { box-shadow: 0 0 15px rgba(100, 181, 246, 0.5); }
-        }
-
-        .evo-blackhole { 
-            background: radial-gradient(circle, #424242, #000000); 
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); 
-            border: 2px solid #424242;
-            animation: blackhole-suck 3s ease-in-out infinite;
-        }
-
-        @keyframes blackhole-suck {
-            0%, 100% { 
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-                transform: scale(1);
-            }
-            50% { 
-                box-shadow: 0 0 40px rgba(0, 0, 0, 1), 0 0 10px rgba(100, 100, 100, 0.3) inset;
-                transform: scale(1.05);
-            }
-        }
-
-        /* Mass indicator */
-        .mass-indicator {
-            display: inline-block;
-            font-size: 0.75rem;
-            padding: 0.2rem 0.5rem;
-            background: rgba(179, 136, 255, 0.2);
-            border-radius: 10px;
-            color: var(--accent-purple);
-            margin-top: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .evolution-stage:hover .mass-indicator {
-            background: rgba(179, 136, 255, 0.4);
-            transform: scale(1.05);
-        }
-
-        /* Interactive Star Formation Section */
-        .formation-section {
-            margin: 3rem 0;
-            padding: 2rem;
-            background: var(--bg-card);
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-            text-align: center;
-        }
-
-        .formation-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            color: var(--accent-gold);
-            margin-bottom: 1rem;
-        }
-
-        .formation-canvas {
-            width: 100%;
-            height: 300px;
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            background: radial-gradient(ellipse at center, #1a1a3e 0%, #050510 100%);
-            margin: 1.5rem 0;
-        }
-
-        .formation-stage {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: all 0.8s ease;
-        }
-
-        .formation-stage.active {
-            opacity: 1;
-        }
-
-        /* Gas cloud */
-        .gas-cloud {
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(ellipse at center, 
-                rgba(255, 152, 0, 0.3) 0%, 
-                rgba(255, 87, 34, 0.2) 40%, 
-                transparent 70%);
-            filter: blur(20px);
-            animation: cloud-pulse 3s ease-in-out infinite;
-        }
-
-        @keyframes cloud-pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-            50% { transform: translate(-50%, -50%) scale(1.1) rotate(10deg); }
-        }
-
-        .formation-stage.active .gas-cloud {
-            animation: cloud-shrink 4s ease-in-out forwards;
-        }
-
-        @keyframes cloud-shrink {
-            0% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.8; }
-            100% { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
-        }
-
-        /* Protostar forming */
-        .protostar-forming {
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: radial-gradient(circle, #ff9800, #ff5722);
-            box-shadow: 0 0 30px rgba(255, 152, 0, 0.8);
-            animation: protostar-grow 3s ease-out forwards;
-        }
-
-        @keyframes protostar-grow {
-            0% { width: 0; height: 0; opacity: 0; }
-            20% { width: 30px; height: 30px; opacity: 1; box-shadow: 0 0 20px rgba(255, 152, 0, 0.5); }
-            80% { width: 60px; height: 60px; opacity: 1; box-shadow: 0 0 40px rgba(255, 152, 0, 0.8); }
-            100% { width: 50px; height: 50px; opacity: 1; box-shadow: 0 0 30px rgba(255, 152, 0, 0.6); }
-        }
-
-        /* Young star */
-        .young-star {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #fff4ea, #ffd2a1 50%, #ff9800);
-            box-shadow: 0 0 40px rgba(255, 213, 79, 0.8);
-            animation: young-star-appear 1s ease-out forwards, young-star-shine 2s ease-in-out infinite 1s;
-        }
-
-        @keyframes young-star-appear {
-            0% { transform: translate(-50%, -50%) scale(0); }
-            100% { transform: translate(-50%, -50%) scale(1); }
-        }
-
-        @keyframes young-star-shine {
-            0%, 100% { box-shadow: 0 0 40px rgba(255, 213, 79, 0.8); }
-            50% { box-shadow: 0 0 60px rgba(255, 213, 79, 1), 0 0 80px rgba(255, 152, 0, 0.5); }
-        }
-
-        /* Main sequence star */
-        .main-seq-star {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #ffffff, #fff4ea 40%, #ffd54f);
-            box-shadow: 0 0 50px rgba(255, 213, 79, 0.9);
-            animation: main-seq-glow 3s ease-in-out infinite;
-        }
-
-        @keyframes main-seq-glow {
-            0%, 100% { box-shadow: 0 0 50px rgba(255, 213, 79, 0.9); transform: translate(-50%, -50%) scale(1); }
-            50% { box-shadow: 0 0 70px rgba(255, 213, 79, 1), 0 0 100px rgba(255, 152, 0, 0.4); transform: translate(-50%, -50%) scale(1.1); }
-        }
-
-        /* Formation controls */
-        .formation-controls {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-
-        .formation-btn {
-            padding: 0.8rem 1.5rem;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.85rem;
-            background: transparent;
-            border: 2px solid var(--accent-gold);
-            color: var(--accent-gold);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .formation-btn:hover, .formation-btn.active {
-            background: var(--accent-gold);
-            color: var(--bg-primary);
-            box-shadow: 0 0 20px rgba(255, 213, 79, 0.5);
-            transform: translateY(-3px);
-        }
-
-        /* Quiz Section */
-        .quiz-section {
-            display: none;
-        }
-
-        .quiz-section.active {
-            display: block;
-        }
-
+        /* Quiz-Bereich */
         .quiz-container {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
+        }
+
+        .quiz-card {
             background: var(--bg-card);
-            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius-xl);
             padding: 2.5rem;
-            border: 1px solid rgba(255,255,255,0.05);
         }
 
         .quiz-header {
@@ -884,485 +466,683 @@
             align-items: center;
             margin-bottom: 2rem;
             padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            flex-wrap: wrap;
-            gap: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
 
-        .quiz-score {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            color: var(--accent-gold);
+        .quiz-title {
+            font-size: 1.1rem;
+            font-weight: 600;
         }
 
-        .quiz-progress {
-            color: var(--text-secondary);
+        .quiz-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .quiz-meta span {
+            color: var(--accent-primary);
         }
 
         .quiz-question {
-            font-size: 1.4rem;
+            font-size: 1.35rem;
+            font-weight: 500;
             margin-bottom: 2rem;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         .quiz-options {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.75rem;
         }
 
         .quiz-option {
-            padding: 1.25rem;
-            background: rgba(255,255,255,0.03);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
+            padding: 1rem 1.25rem;
+            background: var(--bg-surface);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-md);
             color: var(--text-primary);
+            font-size: 1rem;
             text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .quiz-option:hover {
-            background: rgba(79, 195, 247, 0.1);
-            border-color: var(--accent-blue);
-            transform: translateX(10px);
+        .quiz-option:hover:not(:disabled) {
+            background: var(--bg-elevated);
+            border-color: var(--accent-primary);
+            transform: translateX(4px);
+        }
+
+        .quiz-option:disabled {
+            cursor: default;
         }
 
         .quiz-option.correct {
-            background: rgba(105, 240, 174, 0.2);
+            background: rgba(16, 185, 129, 0.15);
             border-color: var(--success);
-            animation: correct-pulse 0.5s ease;
-        }
-
-        @keyframes correct-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            color: var(--success);
         }
 
         .quiz-option.wrong {
-            background: rgba(255, 82, 82, 0.2);
+            background: rgba(239, 68, 68, 0.15);
             border-color: var(--error);
-            animation: wrong-shake 0.5s ease;
-        }
-
-        @keyframes wrong-shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-5px); }
-            40%, 80% { transform: translateX(5px); }
-        }
-
-        .quiz-option.disabled {
-            pointer-events: none;
+            color: var(--error);
         }
 
         .quiz-feedback {
             margin-top: 1.5rem;
             padding: 1rem;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: 600;
+            border-radius: var(--radius-md);
             display: none;
-            animation: feedback-appear 0.3s ease;
-        }
-
-        @keyframes feedback-appear {
-            0% { opacity: 0; transform: translateY(-10px); }
-            100% { opacity: 1; transform: translateY(0); }
         }
 
         .quiz-feedback.show {
             display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .quiz-feedback.correct {
-            background: rgba(105, 240, 174, 0.2);
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
             color: var(--success);
         }
 
         .quiz-feedback.wrong {
-            background: rgba(255, 82, 82, 0.2);
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--error);
             color: var(--error);
         }
 
-        .quiz-next-btn {
+        .quiz-btn {
             display: block;
-            margin: 1.5rem auto 0;
-            padding: 1rem 2.5rem;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            background: var(--accent-blue);
-            color: var(--bg-primary);
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            background: var(--accent-primary);
             border: none;
-            border-radius: 8px;
+            border-radius: var(--radius-md);
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
-        .quiz-next-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(79, 195, 247, 0.6);
+        .quiz-btn:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
         }
 
-        /* Quiz Result */
+        /* Quiz-Ergebnis */
         .quiz-result {
             text-align: center;
+            padding: 2rem 0;
             display: none;
         }
 
         .quiz-result.show {
             display: block;
-            animation: result-appear 0.5s ease;
-        }
-
-        @keyframes result-appear {
-            0% { opacity: 0; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
+            animation: fadeIn 0.5s ease;
         }
 
         .result-score {
-            font-family: 'Orbitron', sans-serif;
             font-size: 4rem;
-            font-weight: 900;
-            color: var(--accent-gold);
-            margin: 2rem 0;
-            text-shadow: 0 0 30px rgba(255, 213, 79, 0.5);
-            animation: score-glow 2s ease-in-out infinite;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-warm), var(--accent-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
         }
 
-        @keyframes score-glow {
-            0%, 100% { text-shadow: 0 0 30px rgba(255, 213, 79, 0.5); }
-            50% { text-shadow: 0 0 50px rgba(255, 213, 79, 0.8), 0 0 80px rgba(255, 213, 79, 0.4); }
-        }
-
-        .result-message {
-            font-size: 1.3rem;
+        .result-label {
             color: var(--text-secondary);
-            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .restart-btn {
-            padding: 1rem 2.5rem;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            background: var(--accent-purple);
-            color: var(--bg-primary);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
+        /* Evolution Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin-top: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary), var(--accent-warm), var(--error));
+            border-radius: 1px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.25rem;
+            width: 12px;
+            height: 12px;
+            background: var(--bg-deep);
+            border: 2px solid var(--accent-primary);
+            border-radius: 50%;
+            transform: translateX(-5px);
+        }
+
+        .timeline-item:nth-child(2)::before { border-color: var(--accent-secondary); }
+        .timeline-item:nth-child(3)::before { border-color: var(--accent-warm); }
+        .timeline-item:nth-child(4)::before { border-color: var(--accent-primary); }
+        .timeline-item:nth-child(5)::before { border-color: var(--error); }
+
+        .timeline-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
             transition: all 0.3s ease;
         }
 
-        .restart-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(179, 136, 255, 0.6);
+        .timeline-card:hover {
+            transform: translateX(8px);
+            border-color: rgba(255,255,255,0.1);
         }
 
-        /* Stars Overview */
-        .stars-overview {
-            display: block;
+        .timeline-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
         }
 
-        .stars-overview.hidden {
-            display: none;
+        .timeline-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
-        /* Legend */
-        .legend {
+        .timeline-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .timeline-mass {
+            display: inline-block;
+            margin-top: 0.75rem;
+            padding: 0.25rem 0.625rem;
+            background: rgba(99, 102, 241, 0.15);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            color: var(--accent-primary);
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Interaktive Sternentstehung */
+        .interactive-demo {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .demo-header {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .demo-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .demo-controls {
+            display: flex;
+            gap: 0.5rem;
             flex-wrap: wrap;
         }
 
-        .legend-item {
+        .demo-btn {
+            padding: 0.5rem 1rem;
+            background: var(--bg-surface);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .demo-btn:hover {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+        }
+
+        .demo-btn.active {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: white;
+        }
+
+        .demo-canvas {
+            aspect-ratio: 16/9;
+            max-height: 280px;
+            background: radial-gradient(ellipse at center, var(--bg-surface) 0%, var(--bg-deep) 100%);
+            border-radius: var(--radius-md);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-stage {
+            display: none;
+            text-align: center;
+        }
+
+        .demo-stage.active {
+            display: block;
+            animation: scaleIn 0.5s ease;
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .demo-gas {
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.4), rgba(239, 68, 68, 0.2), transparent 70%);
+            filter: blur(15px);
+            animation: gasFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes gasFloat {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .demo-protostar {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #f59e0b, #ef4444);
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(245, 158, 11, 0.6);
+            animation: protoGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes protoGlow {
+            0%, 100% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.6); }
+            50% { box-shadow: 0 0 60px rgba(245, 158, 11, 0.9); }
+        }
+
+        .demo-star {
+            width: 45px;
+            height: 45px;
+            background: radial-gradient(circle at 35% 35%, #fff, #fef3c7 40%, #fbbf24);
+            border-radius: 50%;
+            box-shadow: 0 0 50px rgba(251, 191, 36, 0.7);
+            animation: starShine 3s ease-in-out infinite;
+        }
+
+        @keyframes starShine {
+            0%, 100% { box-shadow: 0 0 50px rgba(251, 191, 36, 0.7); transform: scale(1); }
+            50% { box-shadow: 0 0 70px rgba(251, 191, 36, 1); transform: scale(1.05); }
+        }
+
+        .demo-stage-text {
+            margin-top: 1rem;
             font-size: 0.9rem;
             color: var(--text-secondary);
-        }
-
-        .legend-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            animation: dot-pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes dot-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.3); }
         }
 
         /* Footer */
         footer {
             position: relative;
-            z-index: 5;
+            z-index: 10;
             text-align: center;
-            padding: 2rem;
-            color: var(--text-secondary);
+            padding: 3rem 2rem;
+            color: var(--text-muted);
             font-size: 0.85rem;
-            background: linear-gradient(0deg, rgba(5,5,16,0.95) 0%, transparent 100%);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            header {
+            .header-content {
                 flex-direction: column;
-                align-items: center;
+                gap: 1rem;
             }
-
-            .logo h1 {
-                font-size: 1.2rem;
-            }
-
+            
             nav {
+                justify-content: center;
+            }
+            
+            .progress-indicator {
                 width: 100%;
                 justify-content: center;
             }
-
-            .nav-btn {
-                padding: 0.6rem 1rem;
-                font-size: 0.8rem;
-            }
-
+            
             main {
                 padding: 1rem;
             }
-
-            .section-title {
+            
+            .section-header h2 {
                 font-size: 1.5rem;
             }
-
-            .stars-grid {
+            
+            .progress-card {
                 grid-template-columns: 1fr;
+                text-align: center;
             }
-
-            .quiz-container {
+            
+            .progress-icon {
+                margin: 0 auto;
+            }
+            
+            .module-progress {
+                justify-content: center;
+            }
+            
+            .quiz-card {
                 padding: 1.5rem;
             }
-
-            .quiz-question {
-                font-size: 1.1rem;
-            }
-
-            .evolution-stage {
-                min-width: 100%;
-            }
-
-            .formation-canvas {
-                height: 250px;
+            
+            .quiz-header {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Star Background -->
-    <div class="star-field" id="starField"></div>
-    <div class="nebula"></div>
+    <!-- Kosmos Hintergrund -->
+    <div class="cosmos">
+        <div class="stars-bg"></div>
+        <div class="nebula-bg"></div>
+    </div>
 
     <!-- Header -->
     <header>
-        <div class="logo">
-            <div class="logo-icon"></div>
-            <h1>STERNENWELTEN</h1>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🌟</div>
+                <h1>Sternenwelten</h1>
+            </div>
+            
+            <div class="progress-indicator">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+                <span class="progress-text" id="progressText">0% abgeschlossen</span>
+            </div>
+            
+            <nav>
+                <button class="nav-item active" data-section="intro">Einführung</button>
+                <button class="nav-item" data-section="spectral">Spektralklassen</button>
+                <button class="nav-item" data-section="giants">Riesen</button>
+                <button class="nav-item" data-section="evolution">Entwicklung</button>
+                <button class="nav-item" data-section="quiz">Wissenstest</button>
+            </nav>
         </div>
-        <nav>
-            <button class="nav-btn active" data-view="main-sequence">Hauptreihe</button>
-            <button class="nav-btn" data-view="giants">Riesen & Überriesen</button>
-            <button class="nav-btn" data-view="evolution">Entwicklung</button>
-            <button class="nav-btn" data-view="quiz">Quiz</button>
-        </nav>
     </header>
 
-    <!-- Main Content -->
+    <!-- Hauptinhalt -->
     <main>
-        <!-- Main Sequence Stars -->
-        <section class="stars-overview" id="mainSequence">
-            <h2 class="section-title">Sternklassen der Hauptreihe</h2>
-            <p class="section-subtitle">Die 7 Spektralklassen von heißen blauen bis zu kühlen roten Sternen</p>
+        <!-- Einführung -->
+        <section class="section active" id="intro">
+            <div class="section-header">
+                <h2>Entdecke die Welt der Sterne</h2>
+                <p>Wie heiße Sterne? Wie lange leben sie? Und was passiert, wenn sie sterben? Lerne alles über die faszinierende Welt unserer Sterne.</p>
+            </div>
 
-            <div class="legend">
-                <div class="legend-item">
-                    <div class="legend-dot" style="background: var(--star-o)"></div>
-                    <span>Heiß & Hell</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-dot" style="background: var(--star-m)"></div>
-                    <span>Kühl & Dunkel</span>
+            <div class="progress-card">
+                <div class="progress-icon">🚀</div>
+                <div class="progress-details">
+                    <h3>Dein Lernpfad</h3>
+                    <p>Arbeite dich durch die Module, um alles über Sterne zu lernen. Am Ende kannst du dein Wissen testen!</p>
+                    <div class="module-progress">
+                        <div class="module-dot completed" title="Einführung"></div>
+                        <div class="module-dot current" title="Spektralklassen"></div>
+                        <div class="module-dot" title="Riesen & Überriesen"></div>
+                        <div class="module-dot" title="Sternentwicklung"></div>
+                        <div class="module-dot" title="Wissenstest"></div>
+                    </div>
                 </div>
             </div>
 
-            <div class="stars-grid" id="mainSequenceGrid"></div>
-        </section>
+            <div class="learn-grid">
+                <div class="learn-card" onclick="navigateTo('spectral')" style="--card-color: var(--accent-primary); --card-glow: rgba(99, 102, 241, 0.2);">
+                    <span class="card-badge">Modul 1</span>
+                    <div class="star-preview">
+                        <div class="star-orb" style="width: 50px; height: 50px; background: radial-gradient(circle, #fff, #fbbf24); box-shadow: 0 0 30px rgba(251, 191, 36, 0.5);"></div>
+                    </div>
+                    <h3 class="card-title">Was sind Spektralklassen?</h3>
+                    <p class="card-description">Sterne werden nach ihrer Farbe und Temperatur eingeteilt. Lerne die 7 Klassen von O bis M kennen.</p>
+                    <div class="card-stats">
+                        <div class="stat">
+                            <span class="stat-label">Temperatur</span>
+                            <span class="stat-value">2.400 - 50.000 K</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Klassen</span>
+                            <span class="stat-value">O, B, A, F, G, K, M</span>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- Giants and Supergiants -->
-        <section class="stars-overview hidden" id="giants">
-            <h2 class="section-title">Riesen und Überriesen</h2>
-            <p class="section-subtitle">Mächtige Sterne in fortgeschrittenen Entwicklungsstadien</p>
+                <div class="learn-card" onclick="navigateTo('giants')" style="--card-color: var(--accent-warm); --card-glow: rgba(245, 158, 11, 0.2);">
+                    <span class="card-badge">Modul 2</span>
+                    <div class="star-preview">
+                        <div class="star-orb" style="width: 70px; height: 70px; background: radial-gradient(circle, #ff8c5a, #ef4444); box-shadow: 0 0 40px rgba(239, 68, 68, 0.5);"></div>
+                    </div>
+                    <h3 class="card-title">Riesen und Überriesen</h3>
+                    <p class="card-description">Manche Sterne werden zu gigantischen Riesen oder schrumpfen zu kompakten Zwergen.</p>
+                    <div class="card-stats">
+                        <div class="stat">
+                            <span class="stat-label">Größe</span>
+                            <span class="stat-value">bis 1.500× Sonne</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Typen</span>
+                            <span class="stat-value">I, II, III, IV, V</span>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="stars-grid" id="giantsGrid"></div>
-
-            <div class="section-divider">
-                <div class="section-divider-title">Leuchtkraftklassen</div>
-                <div class="section-divider-subtitle">I = Überriesen • II = Helle Riesen • III = Riesen • IV = Unterriesen</div>
+                <div class="learn-card" onclick="navigateTo('evolution')" style="--card-color: var(--accent-secondary); --card-glow: rgba(139, 92, 246, 0.2);">
+                    <span class="card-badge">Modul 3</span>
+                    <div class="star-preview">
+                        <div class="star-orb" style="width: 45px; height: 45px; background: radial-gradient(circle, #fff, #6366f1); box-shadow: 0 0 30px rgba(99, 102, 241, 0.6); animation: starShine 3s infinite;"></div>
+                    </div>
+                    <h3 class="card-title">Sternentwicklung</h3>
+                    <p class="card-description">Von der Geburt in Gaswolken bis zum Tod als Supernova oder Schwarzes Loch.</p>
+                    <div class="card-stats">
+                        <div class="stat">
+                            <span class="stat-label">Phasen</span>
+                            <span class="stat-value">7+ Stufen</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Dauer</span>
+                            <span class="stat-value">Mio. - Mrd. Jahre</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="stars-grid" id="luminosityGrid"></div>
-        </section>
-
-        <!-- Stellar Evolution -->
-        <section class="stars-overview hidden" id="evolution">
-            <h2 class="section-title">Sternentwicklung</h2>
-            <p class="section-subtitle">Die Lebensreise eines Sterns - von der Geburt bis zum Ende</p>
-
-            <!-- Interactive Star Formation -->
-            <div class="formation-section">
-                <div class="formation-title">🌀 Interaktive Sternentstehung</div>
-                <p style="color: var(--text-secondary); margin-bottom: 1rem;">Klicke auf die Buttons, um zu sehen wie ein Stern entsteht!</p>
-                
-                <div class="formation-canvas" id="formationCanvas">
-                    <!-- Stage 1: Gas Cloud -->
-                    <div class="formation-stage active" data-stage="1">
-                        <div class="gas-cloud"></div>
-                    </div>
-                </div>
-                
-                <div class="formation-controls">
-                    <button class="formation-btn" onclick="setFormationStage(1)">1. Gaswolke</button>
-                    <button class="formation-btn" onclick="setFormationStage(2)">2. Protostern</button>
-                    <button class="formation-btn" onclick="setFormationStage(3)">3. Junger Stern</button>
-                    <button class="formation-btn" onclick="setFormationStage(4)">4. Hauptreihenstern</button>
-                    <button class="formation-btn" onclick="animateFormation()">▶ Animation</button>
-                </div>
-            </div>
-
-            <div class="evolution-container">
-                <div class="evolution-path">
-                    <div class="evolution-stage">
-                        <div class="evolution-number">1</div>
-                        <div class="evolution-visual evo-proto">
-                            <span class="evolution-icon">🌫️</span>
-                        </div>
-                        <div class="evolution-info">
-                            <h4>Protostern</h4>
-                            <p>Ein Stern entsteht aus einer Gas- und Staubwolke. Die Materie zieht sich zusammen und wird immer heißer.</p>
-                            <span class="mass-indicator">Masse: variabel</span>
-                        </div>
-                    </div>
-
-                    <div class="evolution-stage">
-                        <div class="evolution-number">2</div>
-                        <div class="evolution-visual evo-main">
-                            <span class="evolution-icon">☀️</span>
-                        </div>
-                        <div class="evolution-info">
-                            <h4>Hauptreihe</h4>
-                            <p>Der Stern verbrennt Wasserstoff zu Helium im Kern. Unsere Sonne befindet sich in diesem Stadium.</p>
-                            <span class="mass-indicator">Masse: 0,08 - 100 Sonnenmassen</span>
-                        </div>
-                    </div>
-
-                    <div class="evolution-stage">
-                        <div class="evolution-number">3</div>
-                        <div class="evolution-visual evo-giant">
-                            <span class="evolution-icon">🔴</span>
-                        </div>
-                        <div class="evolution-info">
-                            <h4>Roter Riese</h4>
-                            <p>Wenn der Wasserstoff im Kern erschöpft ist, dehnt sich der Stern aus und kühlt ab. Er wird rot und riesig.</p>
-                            <span class="mass-indicator">Größe: 10-1000 × Sonne</span>
-                        </div>
-                    </div>
-
-                    <div class="evolution-stage">
-                        <div class="evolution-number">4a</div>
-                        <div class="evolution-visual evo-nebula">
-                            <span class="evolution-icon">💜</span>
-                        </div>
-                        <div class="evolution-info">
-                            <h4>Planetarischer Nebel</h4>
-                            <p>Bei massearmen Sternen: Die äußeren Schichten werden abgestoßen und bilden einen leuchtenden Nebel.</p>
-                            <span class="mass-indicator">Für Sterne < 8 Sonnenmassen</span>
-                        </div>
-                    </div>
-
-                    <div class="evolution-stage">
-                        <div class="evolution-number">4b</div>
-                        <div class="evolution-visual evo-supernova">
-                            <span class="evolution-icon">💥</span>
-                        </div>
-                        <div class="evolution-info">
-                            <h4>Supernova</h4>
-                            <p>Bei massereichen Sternen: Der Kern kollabiert und explodiert mit unfassbarer Energie!</p>
-                            <span class="mass-indicator">Für Sterne > 8 Sonnenmassen</span>
-                        </div>
-                    </div>
-
-                    <div class="evolution-stage">
-                        <div class="evolution-number">5a</div>
-                        <div class="evolution-visual evo-white">
-                            <span class="evolution-icon">⚪</span>
-                        </div>
-                        <div class="evolution-info">
-                            <h4>Weißer Zwerg</h4>
-                            <p>Der heiße, kompakte Überrest eines sonnenähnlichen Sterns. Er kühlt langsam über Milliarden Jahre ab.</p>
-                            <span class="mass-indicator">Masse: 0,17 - 1,4 Sonnenmassen</span>
-                        </div>
-                    </div>
-
-                    <div class="evolution-stage">
-                        <div class="evolution-number">5b</div>
-                        <div class="evolution-visual evo-neutron">
-                            <span class="evolution-icon">🟡</span>
-                        </div>
-                        <div class="evolution-info">
-                            <h4>Neutronenstern</h4>
-                            <p>Extrem dichter Überrest einer Supernova. Ein Teelöffel Materie würde auf der Erde Millionen Tonnen wiegen!</p>
-                            <span class="mass-indicator">Masse: 1,4 - 3 Sonnenmassen</span>
-                        </div>
-                    </div>
-
-                    <div class="evolution-stage">
-                        <div class="evolution-number">5c</div>
-                        <div class="evolution-visual evo-blackhole">
-                            <span class="evolution-icon">⚫</span>
-                        </div>
-                        <div class="evolution-info">
-                            <h4>Schwarzes Loch</h4>
-                            <p>Der extremste Überrest: Die Masse ist so komprimiert, dass nicht einmal Licht entkommen kann.</p>
-                            <span class="mass-indicator">Masse: > 3 Sonnenmassen</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="info-box">
+                <h4>Wusstest du schon?</h4>
+                <p>Unsere Sonne ist ein Stern der Klasse G (Gelber Zwerg). Sie ist etwa 4,6 Milliarden Jahre alt und wird noch etwa 5 Milliarden Jahre weiterleben.</p>
             </div>
         </section>
 
-        <!-- Quiz Section -->
-        <section class="quiz-section" id="quiz">
-            <h2 class="section-title">Teste dein Wissen</h2>
-            <p class="section-subtitle">Beantworte Fragen zu Sternklassen, Riesen und Sternentwicklung!</p>
+        <!-- Spektralklassen -->
+        <section class="section" id="spectral">
+            <div class="section-header">
+                <h2>Die 7 Spektralklassen</h2>
+                <p>Sterne werden nach ihrer Oberflächentemperatur eingeteilt. Die Classes O bis M repräsentieren heiße bis kühle Sterne.</p>
+            </div>
 
-            <div class="quiz-container" id="quizContainer">
-                <div class="quiz-header">
-                    <div class="quiz-score">Punkte: <span id="score">0</span></div>
-                    <div class="quiz-progress">Frage <span id="currentQuestion">1</span> von <span id="totalQuestions">10</span></div>
+            <div class="learn-grid" id="spectralGrid"></div>
+
+            <div class="info-box">
+                <h4>Merkhilfe</h4>
+                <p>Merke dir die Reihenfolge mit diesem Satz: <strong>"O Be A Fine Girl, Kiss Me"</strong> – O, B, A, F, G, K, M. Von heißen blauen zu kühlen roten Sternen!</p>
+            </div>
+        </section>
+
+        <!-- Riesen und Überriesen -->
+        <section class="section" id="giants">
+            <div class="section-header">
+                <h2>Riesen und Überriesen</h2>
+                <p>Neben den Hauptreihensternen gibt es Sterne in späteren Entwicklungsstadien – Riesen und Überriesen.</p>
+            </div>
+
+            <div class="learn-grid" id="giantsGrid"></div>
+
+            <div class="info-box">
+                <h4>Leuchtkraftklassen</h4>
+                <p>Die Einteilung I (Überriesen) bis VII (Weiße Zwerge) beschreibt die absolute Helligkeit eines Sterns. Unsere Sonne ist ein Hauptreihenstern (Klasse V).</p>
+            </div>
+        </section>
+
+        <!-- Sternentwicklung -->
+        <section class="section" id="evolution">
+            <div class="section-header">
+                <h2>Lebenszyklus eines Sterns</h2>
+                <p>Wie entsteht ein Stern? Was passiert, wenn sein Brennstoff ausgeht? Entdecke die Entwicklungsphasen.</p>
+            </div>
+
+            <!-- Interaktive Demo -->
+            <div class="interactive-demo">
+                <div class="demo-header">
+                    <span class="demo-title">🌀 Interaktive Sternentstehung</span>
+                    <div class="demo-controls">
+                        <button class="demo-btn active" onclick="showDemo(1)">Gaswolke</button>
+                        <button class="demo-btn" onclick="showDemo(2)">Protostern</button>
+                        <button class="demo-btn" onclick="showDemo(3)">Stern</button>
+                        <button class="demo-btn" onclick="playDemo()">▶ Alle</button>
+                    </div>
+                </div>
+                <div class="demo-canvas">
+                    <div class="demo-stage active" data-stage="1">
+                        <div class="demo-gas"></div>
+                        <p class="demo-stage-text">Gas- und Staubwolke</p>
+                    </div>
+                    <div class="demo-stage" data-stage="2">
+                        <div class="demo-protostar"></div>
+                        <p class="demo-stage-text">Protostern (zusammenziehend)</p>
+                    </div>
+                    <div class="demo-stage" data-stage="3">
+                        <div class="demo-star"></div>
+                        <p class="demo-stage-text">Hauptreihenstern (Wasserstoff-Brennen)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-number">Phase 1</span>
+                        <h4 class="timeline-title">Protostern</h4>
+                        <p class="timeline-desc">Eine Wolke aus Gas und Staub zieht sich durch Gravitation zusammen. Im Kern steigt die Temperatur an.</p>
+                        <span class="timeline-mass">Dauer: 100.000 - 1 Mio. Jahre</span>
+                    </div>
                 </div>
 
-                <div id="quizContent">
-                    <div class="quiz-question" id="questionText"></div>
-                    <div class="quiz-options" id="quizOptions"></div>
-                    <div class="quiz-feedback" id="quizFeedback"></div>
-                    <button class="quiz-next-btn" id="nextBtn" style="display: none;">Nächste Frage</button>
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-number">Phase 2</span>
+                        <h4 class="timeline-title">Hauptreihe</h4>
+                        <p class="timeline-desc">Der Stern verbrennt Wasserstoff zu Helium im Kern. Dies ist das längste Stadium seines Lebens.</p>
+                        <span class="timeline-mass">Unsere Sonne: ~10 Mrd. Jahre</span>
+                    </div>
                 </div>
 
-                <div class="quiz-result" id="quizResult">
-                    <h3>Quiz abgeschlossen!</h3>
-                    <div class="result-score"><span id="finalScore">0</span>/10</div>
-                    <p class="result-message" id="resultMessage"></p>
-                    <button class="restart-btn" id="restartBtn">Nochmal versuchen</button>
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-number">Phase 3</span>
+                        <h4 class="timeline-title">Roter Riese</h4>
+                        <p class="timeline-desc">Wasserstoff im Kern ist erschöpft. Der Stern dehnt sich aus und kühlt ab – wird rot und riesig.</p>
+                        <span class="timeline-mass">Größe: 10 - 1000× Sonne</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-number">Phase 4a</span>
+                        <h4 class="timeline-title">Planetarischer Nebel / Weißer Zwerg</h4>
+                        <p class="timeline-desc">Bei massearmen Sternen: Äußere Hülle wird abgestoßen, Kern wird zum Weißen Zwerg.</p>
+                        <span class="timeline-mass">Für Sterne < 8 Sonnenmassen</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-number">Phase 4b</span>
+                        <h4 class="timeline-title">Supernova / Schwarzes Loch</h4>
+                        <p class="timeline-desc">Bei massereichen Sternen: Der Kern kollabiert und explodiert als Supernova. Was übrig bleibt: Neutronenstern oder Schwarzes Loch.</p>
+                        <span class="timeline-mass">Für Sterne > 8 Sonnenmassen</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz -->
+        <section class="section" id="quiz">
+            <div class="section-header">
+                <h2>Teste dein Wissen</h2>
+                <p>Wie viel hast du über Sterne gelernt? Finde es heraus!</p>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-card" id="quizCard">
+                    <div class="quiz-header">
+                        <span class="quiz-title">Frage <span id="qNum">1</span> von <span id="qTotal">10</span></span>
+                        <div class="quiz-meta">
+                            <span>Punkte: <span id="score">0</span></span>
+                        </div>
+                    </div>
+
+                    <div id="quizContent">
+                        <p class="quiz-question" id="question"></p>
+                        <div class="quiz-options" id="options"></div>
+                        <div class="quiz-feedback" id="feedback"></div>
+                        <button class="quiz-btn" id="nextBtn" onclick="nextQuestion()" style="display: none;">Weiter</button>
+                    </div>
+
+                    <div class="quiz-result" id="result">
+                        <div class="result-score" id="finalScore">0/10</div>
+                        <p class="result-label" id="resultText"></p>
+                        <button class="quiz-btn" onclick="restartQuiz()">Nochmal versuchen</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1370,539 +1150,240 @@
 
     <!-- Footer -->
     <footer>
-        <p>🌟 Sternenwelten – Eine Reise durch das Universum 🌟</p>
+        <p>🌟 Sternenwelten – Lerne die Faszination des Universums kennen</p>
     </footer>
 
     <script>
-        // Hauptreihen-Sterndaten
-        const mainSequenceStars = [
-            {
-                class: 'O',
-                name: 'Blauer Überriese',
-                color: '#9bb0ff',
-                colorGlow: 'rgba(155, 176, 255, 0.3)',
-                temperature: '30.000 - 50.000 K',
-                size: 150,
-                sizeRelative: 1,
-                lifetime: '1 - 10 Mio. Jahre',
-                examples: ['Alnitak', 'Mintaka', 'Alnilam'],
-                luminosity: 'V (Hauptreihe)'
-            },
-            {
-                class: 'B',
-                name: 'Blauer Riese',
-                color: '#aabfff',
-                colorGlow: 'rgba(170, 191, 255, 0.3)',
-                temperature: '10.000 - 30.000 K',
-                size: 25,
-                sizeRelative: 0.17,
-                lifetime: '10 - 100 Mio. Jahre',
-                examples: ['Rigel', 'Spica', 'Bellatrix'],
-                luminosity: 'V (Hauptreihe)'
-            },
-            {
-                class: 'A',
-                name: 'Weißer Stern',
-                color: '#cad7ff',
-                colorGlow: 'rgba(202, 215, 255, 0.3)',
-                temperature: '7.500 - 10.000 K',
-                size: 4,
-                sizeRelative: 0.027,
-                lifetime: '100 - 500 Mio. Jahre',
-                examples: ['Sirius', 'Vega', 'Altair'],
-                luminosity: 'V (Hauptreihe)'
-            },
-            {
-                class: 'F',
-                name: 'Gelb-Weißer Stern',
-                color: '#f8f7ff',
-                colorGlow: 'rgba(248, 247, 255, 0.3)',
-                temperature: '6.000 - 7.500 K',
-                size: 2,
-                sizeRelative: 0.013,
-                lifetime: '500 - 2.000 Mio. Jahre',
-                examples: ['Procyon', 'Canopus', 'Polaris'],
-                luminosity: 'V (Hauptreihe)'
-            },
-            {
-                class: 'G',
-                name: 'Gelber Zwerg',
-                color: '#fff4ea',
-                colorGlow: 'rgba(255, 244, 234, 0.3)',
-                temperature: '5.200 - 6.000 K',
-                size: 1,
-                sizeRelative: 0.007,
-                lifetime: '2.000 - 10.000 Mio. Jahre',
-                examples: ['Sonne', 'Alpha Centauri A', 'Capella'],
-                luminosity: 'V (Hauptreihe)'
-            },
-            {
-                class: 'K',
-                name: 'Oranger Zwerg',
-                color: '#ffd2a1',
-                colorGlow: 'rgba(255, 210, 161, 0.3)',
-                temperature: '3.700 - 5.200 K',
-                size: 0.8,
-                sizeRelative: 0.005,
-                lifetime: '10.000 - 50.000 Mio. Jahre',
-                examples: ['Arcturus', 'Aldebaran', 'Epsilon Eridani'],
-                luminosity: 'V (Hauptreihe)'
-            },
-            {
-                class: 'M',
-                name: 'Roter Zwerg',
-                color: '#ff6f3f',
-                colorGlow: 'rgba(255, 111, 63, 0.4)',
-                temperature: '2.400 - 3.700 K',
-                size: 0.5,
-                sizeRelative: 0.003,
-                lifetime: '50.000 - 100.000+ Mio. J.',
-                examples: ['Proxima Centauri', 'Barnards Pfeilstern', 'Gliese 667'],
-                luminosity: 'V (Hauptreihe)'
-            }
+        // Sterndaten - Spektralklassen
+        const spectralStars = [
+            { class: 'O', name: 'Blauer Überriese', temp: '30.000 - 50.000 K', size: '15 - 150×', lifetime: '1 - 10 Mio.', color: '#6b8cff', glow: 'rgba(107, 140, 255, 0.3)', examples: ['Alnitak', 'Mintaka'], desc: 'Die seltensten und heißesten Sterne. Sie leben sehr kurz und sterben jung.' },
+            { class: 'B', name: 'Blauer Riese', temp: '10.000 - 30.000 K', size: '5 - 25×', lifetime: '10 - 100 Mio.', color: '#8ba4ff', glow: 'rgba(139, 164, 255, 0.3)', examples: ['Rigel', 'Spica'], desc: 'Heiße, helle Sterne. Viel seltener als kühlere Sterne.' },
+            { class: 'A', name: 'Weißer Stern', temp: '7.500 - 10.000 K', size: '1.5 - 4×', lifetime: '100 - 500 Mio.', color: '#c0cfff', glow: 'rgba(192, 207, 255, 0.3)', examples: ['Sirius', 'Vega'], desc: 'stofflinien im SpeWeiße Sterne mit starken Wasserktrum.' },
+            { class: 'F', name: 'Gelb-Weißer Stern', temp: '6.000 - 7.500 K', size: '1.2 - 2×', lifetime: '500 - 2.000 Mio.', color: '#f0ebe3', glow: 'rgba(240, 235, 227, 0.3)', examples: ['Procyon', 'Canopus'], desc: 'Sonnenähnliche Sterne mit schwächeren Metalllinien.' },
+            { class: 'G', name: 'Gelber Zwerg', temp: '5.200 - 6.000 K', size: '0.8 - 1.4×', lifetime: '2.000 - 10.000 Mio.', color: '#fff5e6', glow: 'rgba(255, 245, 230, 0.3)', examples: ['Sonne', 'Alpha Cen A'], desc: 'Unsere Sonne gehört hierher! Lebensfreundliche Zone möglich.' },
+            { class: 'K', name: 'Oranger Zwerg', temp: '3.700 - 5.200 K', size: '0.5 - 0.8×', lifetime: '10.000 - 50.000 Mio.', color: '#ffd9b3', glow: 'rgba(255, 217, 179, 0.3)', examples: ['Arcturus', 'Aldebaran'], desc: 'Kühlere Sterne, die sehr lange leben. Viele haben Planeten.' },
+            { class: 'M', name: 'Roter Zwerg', temp: '2.400 - 3.700 K', size: '0.1 - 0.5×', lifetime: '50.000 - 100.000+ Mio.', color: '#ff8c5a', glow: 'rgba(255, 140, 90, 0.4)', examples: ['Proxima Cen', 'Barnard'], desc: 'Die häufigsten Sterne! Sehr langlebig, aber relativ dunkel.' }
         ];
 
-        // Riesen und Überriesen
-        const giantsStars = [
-            {
-                class: 'M',
-                name: 'Roter Überriese',
-                color: '#ff3030',
-                colorGlow: 'rgba(255, 48, 48, 0.4)',
-                temperature: '3.000 - 4.000 K',
-                size: 1500,
-                sizeRelative: 1,
-                lifetime: '1 - 50 Mio. Jahre',
-                examples: ['Beteigeuze', 'Antares', 'UY Scuti'],
-                luminosity: 'I (Überriese)'
-            },
-            {
-                class: 'K',
-                name: 'Roter Riese',
-                color: '#ff6f3f',
-                colorGlow: 'rgba(255, 111, 63, 0.4)',
-                temperature: '3.500 - 5.000 K',
-                size: 100,
-                sizeRelative: 0.067,
-                lifetime: '10 - 500 Mio. Jahre',
-                examples: ['Arcturus', 'Aldebaran', 'R Castor'],
-                luminosity: 'III (Riese)'
-            },
-            {
-                class: 'G',
-                name: 'Gelber Riese',
-                color: '#ffd700',
-                colorGlow: 'rgba(255, 215, 0, 0.4)',
-                temperature: '4.500 - 6.000 K',
-                size: 50,
-                sizeRelative: 0.033,
-                lifetime: '100 - 500 Mio. Jahre',
-                examples: ['Polux', 'Capella', 'Delta Geminorum'],
-                luminosity: 'III (Riese)'
-            },
-            {
-                class: 'B',
-                name: 'Blauer Überriese',
-                color: '#4d94ff',
-                colorGlow: 'rgba(77, 148, 255, 0.4)',
-                temperature: '10.000 - 30.000 K',
-                size: 200,
-                sizeRelative: 0.133,
-                lifetime: '1 - 20 Mio. Jahre',
-                examples: ['Rigel', 'Alnilam', 'Naos'],
-                luminosity: 'I (Überriese)'
-            },
-            {
-                class: 'A',
-                name: 'Heller Riese',
-                color: '#e0e0ff',
-                colorGlow: 'rgba(224, 224, 255, 0.4)',
-                temperature: '7.500 - 10.000 K',
-                size: 80,
-                sizeRelative: 0.053,
-                lifetime: '50 - 300 Mio. Jahre',
-                examples: ['Canopus', 'Mirzam', 'Alkaid'],
-                luminosity: 'II (Heller Riese)'
-            },
-            {
-                class: 'F',
-                name: 'Unterriese',
-                color: '#fff8dc',
-                colorGlow: 'rgba(255, 248, 220, 0.4)',
-                temperature: '5.500 - 7.000 K',
-                size: 8,
-                sizeRelative: 0.005,
-                lifetime: '500 - 2.000 Mio. Jahre',
-                examples: ['Procyon', 'Gamma Draconis', 'Zeta Aurigae'],
-                luminosity: 'IV (Unterriese)'
-            }
+        // Riesen-Daten
+        const giantsData = [
+            { class: 'M-ÜR', name: 'Roter Überriese', temp: '3.000 - 4.000 K', size: '100 - 1.500×', lifetime: '1 - 50 Mio.', color: '#ef4444', glow: 'rgba(239, 68, 68, 0.4)', examples: ['Beteigeuze', 'Antares', 'UY Scuti'], desc: 'Die größten bekannten Sterne! Würde unser Sonnensystem verschlucken.' },
+            { class: 'K-R', name: 'Roter Riese', temp: '3.500 - 5.000 K', size: '10 - 100×', lifetime: '10 - 500 Mio.', color: '#ff8c5a', glow: 'rgba(255, 140, 90, 0.3)', examples: ['Arcturus', 'Aldebaran'], desc: 'Sterne am Ende ihres Lebens. Sehr locker und kühl.' },
+            { class: 'G-R', name: 'Gelber Riese', temp: '4.500 - 6.000 K', size: '5 - 50×', lifetime: '100 - 500 Mio.', color: '#fbbf24', glow: 'rgba(251, 191, 36, 0.3)', examples: ['Capella', 'Pollux'], desc: 'Seltener Typ zwischen Roten Riesen und Blauen Riesen.' },
+            { class: 'B-ÜR', name: 'Blauer Überriese', temp: '10.000 - 30.000 K', size: '20 - 200×', lifetime: '1 - 20 Mio.', color: '#3b82f6', glow: 'rgba(59, 130, 246, 0.3)', examples: ['Rigel', 'Alnilam'], desc: 'Seltene, extrem helle Sterne mit hoher Masse.' },
+            { class: 'WD', name: 'Weißer Zwerg', temp: '10.000 - 40.000 K', size: '0.01 - 0.02×', lifetime: 'Mrd. Jahre', color: '#e0e7ff', glow: 'rgba(224, 231, 255, 0.5)', examples: ['Sirius B', 'Procyon B'], desc: 'Kompakte Endprodukte! Ein Teelöffel wiegt mehrere Tonnen.' }
         ];
 
-        // Leuchtklassen Erklärung
-        const luminosityClasses = [
-            { class: 'I', name: 'Überriesen', color: '#ff5252', description: 'Die größten und hellsten Sterne. Sehr selten.' },
-            { class: 'II', name: 'Helle Riesen', color: '#ff9800', description: 'Heller als normale Riesen, aber kleiner als Überriesen.' },
-            { class: 'III', name: 'Riesen', color: '#ffd54f', description: 'Sterne, die ihren Wasserstoffvorrat im Kern erschöpft haben.' },
-            { class: 'IV', name: 'Unterriesen', color: '#8bc34a', description: 'Übergangsstadium zwischen Hauptreihe und Riesen.' },
-            { class: 'V', name: 'Hauptreihensterne', color: '#4fc3f7', description: 'Normale Sterne, die Wasserstoff verbrennen.' }
+        // Quizfragen
+        const questions = [
+            { q: 'Welche Sternklasse ist am heißesten?', a: ['Klasse O', 'Klasse M', 'Klasse G', 'Klasse K'], c: 0 },
+            { q: 'Welche Farbe hat ein Stern der Klasse M?', a: ['Blau', 'Weiß', 'Rot', 'Gelb'], c: 2 },
+            { q: 'Zu welcher Klasse gehört unsere Sonne?', a: ['Klasse G', 'Klasse F', 'Klasse K', 'Klasse A'], c: 0 },
+            { q: 'Welche Sternklasse lebt am längsten?', a: ['Klasse O', 'Klasse B', 'Klasse M', 'Klasse A'], c: 2 },
+            { q: 'Welche Sternklasse ist am seltensten?', a: ['Klasse M', 'Klasse G', 'Klasse O', 'Klasse K'], c: 2 },
+            { q: 'Was ist ein roter Überriese?', a: ['Ein kleiner roter Stern', 'Ein Riese mit roter Farbe', 'Ein sehr großer kühler Stern', 'Ein Planet'], c: 2 },
+            { q: 'Welcher Stern ist Beteigeuze?', a: ['Ein roter Zwerg', 'Ein roter Überriese', 'Ein blauer Riese', 'Ein weißer Zwerg'], c: 1 },
+            { q: 'Was entsteht aus einem massearmen Stern am Ende?', a: ['Supernova', 'Schwarzes Loch', 'Weißer Zwerg', 'Neutronenstern'], c: 2 },
+            { q: 'Was ist eine Supernova?', a: ['Ein heller Stern', 'Eine Sternenexplosion', 'Ein Planet', 'Ein Komet'], c: 1 },
+            { q: 'Welche Leuchtkraftklasse sind Überriesen?', a: ['Klasse V', 'Klasse III', 'Klasse I', 'Klasse IV'], c: 2 },
+            { q: 'Was bleibt nach einer Supernova (massereich)?', a: ['Weißer Zwerg', 'Nebelfleck', 'Neutronenstern oder Schwarzes Loch', 'Nichts'], c: 2 },
+            { q: 'Was bedeutet "Hauptreihe"?', a: ['Ein besonders großer Stern', 'Ein Stern der Wasserstoff verbrennt', 'Ein toter Stern', 'Ein entstehender Stern'], c: 1 },
+            { q: 'Was ist die häufigste Sternklasse?', a: ['Klasse O', 'Klasse G', 'Klasse M', 'Klasse A'], c: 2 },
+            { q: 'Welcher Stern ist der nächste zur Sonne?', a: ['Alpha Centauri A', 'Proxima Centauri', 'Sirius', 'Barnard'], c: 1 },
+            { q: 'Wie alt ist unsere Sonne etwa?', a: ['1 Milliarde Jahre', '4,6 Milliarden Jahre', '10 Milliarden Jahre', '100 Millionen Jahre'], c: 1 }
         ];
 
-        // Erweiterte Quizfragen
-        const quizQuestions = [
-            { question: 'Welche Sternklasse hat die höchste Oberflächentemperatur?', options: ['Klasse O', 'Klasse M', 'Klasse G', 'Klasse K'], correct: 0 },
-            { question: 'Welche Farbe hat ein Stern der Klasse M?', options: ['Blau', 'Weiß', 'Rot', 'Gelb'], correct: 2 },
-            { question: 'Zu welcher Klasse gehört unsere Sonne?', options: ['Klasse G', 'Klasse F', 'Klasse K', 'Klasse A'], correct: 0 },
-            { question: 'Welche Sternklasse lebt am längsten?', options: ['Klasse O', 'Klasse B', 'Klasse M', 'Klasse A'], correct: 2 },
-            { question: 'Welche Sternklasse ist am seltensten?', options: ['Klasse M', 'Klasse G', 'Klasse O', 'Klasse K'], correct: 2 },
-            { question: 'Welche Farbe hat ein Stern der Klasse O?', options: ['Rot', 'Gelb', 'Blau', 'Orange'], correct: 2 },
-            { question: 'Welcher Stern ist ein roter Überriese?', options: ['Rigel', 'Sirius', 'Beteigeuze', 'Vega'], correct: 2 },
-            { question: 'Welcher Stern ist ein Beispiel für Klasse M (roter Zwerg)?', options: ['Sirius', 'Proxima Centauri', 'Arcturus', 'Vega'], correct: 1 },
-            { question: 'Welche Leuchtkraftklasse sind Überriesen?', options: ['Klasse V', 'Klasse III', 'Klasse I', 'Klasse IV'], correct: 2 },
-            { question: 'Was entsteht aus einem massearmen Stern am Ende seines Lebens?', options: ['Supernova', 'Schwarzes Loch', 'Weißer Zwerg', 'Neutronenstern'], correct: 2 },
-            { question: 'Was ist eine Supernova?', options: ['Ein besonders heller Stern', 'Eine Sternenexplosion', 'Ein Planet', 'Ein Komet'], correct: 1 },
-            { question: 'Welcher Stern ist ein roter Riese (Klasse K, Leuchtkraft III)?', options: ['Sirius', 'Arcturus', 'Vega', 'Rigel'], correct: 1 },
-            { question: 'Wie groß kann ein roter Überriese werden?', options: ['So groß wie die Sonne', '10× Sonne', 'Über 1000× Sonne', 'Nicht größer als Jupiter'], correct: 2 },
-            { question: 'Was bleibt nach einer Supernova eines massereichen Sterns übrig?', options: ['Weißer Zwerg', 'Nebelfleck', 'Neutronenstern oder Schwarzes Loch', 'Nichts'], correct: 2 },
-            { question: 'Welches ist das Endstadium unserer Sonne?', options: ['Neutronenstern', 'Schwarzes Loch', 'Weißer Zwerg', 'Roter Riese'], correct: 2 }
-        ];
-
-        // DOM Elemente
-        const mainSequenceGrid = document.getElementById('mainSequenceGrid');
-        const giantsGrid = document.getElementById('giantsGrid');
-        const luminosityGrid = document.getElementById('luminosityGrid');
-        const sections = {
-            'main-sequence': document.getElementById('mainSequence'),
-            'giants': document.getElementById('giants'),
-            'evolution': document.getElementById('evolution'),
-            'quiz': document.getElementById('quiz')
-        };
-        const navBtns = document.querySelectorAll('.nav-btn');
-
-        // Quiz Variablen
-        let currentQuestionIndex = 0;
+        // State
+        let currentQuiz = [];
+        let qIndex = 0;
         let score = 0;
-        let selectedQuestions = [];
-
-        // Sternkarte erstellen mit erweiterten Animationen
-        function createStarCard(star, isGiant = false) {
-            const card = document.createElement('div');
-            card.className = 'star-card';
-            card.style.setProperty('--star-color', star.color);
-            card.style.setProperty('--star-color-glow', star.colorGlow);
-            
-            const sizePercent = Math.min(100, (star.size / 1500) * 100);
-            
-            card.innerHTML = `
-                <div class="star-visual">
-                    <div class="star-circle" style="
-                        width: ${30 + sizePercent * 0.7}px; 
-                        height: ${30 + sizePercent * 0.7}px;
-                        background: radial-gradient(circle at 30% 30%, ${star.color}, ${adjustColor(star.color, -50)} 60%, transparent 100%);
-                        box-shadow: 0 0 ${20 + sizePercent * 0.5}px ${star.color}, 0 0 ${40 + sizePercent}px ${star.colorGlow};
-                    "></div>
-                </div>
-                <div class="luminosity-class">${star.luminosity || 'V'}</div>
-                <div class="star-class" style="color: ${star.color}">${star.class}</div>
-                <div class="star-name">${star.name}</div>
-                <div class="star-info">
-                    <div class="info-row">
-                        <span class="info-label">Temperatur</span>
-                        <span class="info-value">${star.temperature}</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Größe (Ø Sonne)</span>
-                        <span class="info-value">${star.size}×</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Lebensdauer</span>
-                        <span class="info-value">${star.lifetime}</span>
-                    </div>
-                </div>
-                <div class="size-bar-container">
-                    <div class="size-bar-label">Relativgröße: ${star.size}× Sonne</div>
-                    <div class="size-bar">
-                        <div class="size-bar-fill" style="width: ${sizePercent}%"></div>
-                    </div>
-                </div>
-                <div class="example-stars">
-                    <div class="example-label">Beispiele</div>
-                    <div class="example-list">
-                        ${star.examples.map(e => `<span class="example-tag">${e}</span>`).join('')}
-                    </div>
-                </div>
-            `;
-            
-            // Hover-Event für Größenänderung
-            card.addEventListener('mouseenter', () => {
-                const starCircle = card.querySelector('.star-circle');
-                const sizeFill = card.querySelector('.size-bar-fill');
-                starCircle.style.transform = 'scale(1.3)';
-                sizeFill.style.width = '100%';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                const starCircle = card.querySelector('.star-circle');
-                const sizeFill = card.querySelector('.size-bar-fill');
-                starCircle.style.transform = 'scale(1)';
-                sizeFill.style.width = sizePercent + '%';
-            });
-            
-            return card;
-        }
-
-        // Leuchtkarten erstellen
-        function createLuminosityCard(lc) {
-            const card = document.createElement('div');
-            card.className = 'star-card';
-            card.style.setProperty('--star-color', lc.color);
-            card.style.setProperty('--star-color-glow', `${lc.color}40`);
-            
-            card.innerHTML = `
-                <div class="star-visual">
-                    <div class="star-circle" style="
-                        width: 60px; 
-                        height: 60px;
-                        background: radial-gradient(circle at 30% 30%, ${lc.color}, ${adjustColor(lc.color, -50)} 60%, transparent 100%);
-                        box-shadow: 0 0 25px ${lc.color}80;
-                    "></div>
-                </div>
-                <div class="star-class" style="color: ${lc.color}">Klasse ${lc.class}</div>
-                <div class="star-name">${lc.name}</div>
-                <div class="star-info">
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5;">${lc.description}</p>
-                </div>
-            `;
-            
-            return card;
-        }
-
-        // Farbe abdunkeln
-        function adjustColor(color, amount) {
-            const hex = color.replace('#', '');
-            const r = Math.max(0, Math.min(255, parseInt(hex.substr(0, 2), 16) + amount));
-            const g = Math.max(0, Math.min(255, parseInt(hex.substr(2, 2), 16) + amount));
-            const b = Math.max(0, Math.min(255, parseInt(hex.substr(4, 2), 16) + amount));
-            return `rgb(${r}, ${g}, ${b})`;
-        }
+        let completedSections = new Set(['intro']);
 
         // Navigation
-        navBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const view = btn.dataset.view;
-                
-                navBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                // Alle Sektionen verstecken
-                Object.values(sections).forEach(s => {
-                    if (s.id !== 'quiz') s.classList.add('hidden');
-                    if (s.id === 'quiz') s.classList.remove('active');
-                });
-                
-                // Gewählte Sektion zeigen
-                if (view === 'quiz') {
-                    sections['quiz'].classList.add('active');
-                    startQuiz();
-                } else if (sections[view]) {
-                    sections[view].classList.remove('hidden');
-                }
-            });
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            btn.addEventListener('click', () => navigateTo(btn.dataset.section));
         });
 
-        // Sternentstehung Animation
-        function setFormationStage(stage) {
-            const canvas = document.getElementById('formationCanvas');
-            canvas.innerHTML = '';
+        function navigateTo(section) {
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-section="${section}"]`).classList.add('active');
             
-            const stageDiv = document.createElement('div');
-            stageDiv.className = 'formation-stage active';
-            stageDiv.dataset.stage = stage;
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(section).classList.add('active');
             
-            if (stage === 1) {
-                stageDiv.innerHTML = '<div class="gas-cloud"></div>';
-            } else if (stage === 2) {
-                stageDiv.innerHTML = '<div class="protostar-forming"></div>';
-            } else if (stage === 3) {
-                stageDiv.innerHTML = '<div class="young-star"></div>';
-            } else if (stage === 4) {
-                stageDiv.innerHTML = '<div class="main-seq-star"></div>';
-            }
+            completedSections.add(section);
+            updateProgress();
             
-            canvas.appendChild(stageDiv);
+            if (section === 'quiz') startQuiz();
+        }
+
+        // Fortschritt
+        function updateProgress() {
+            const total = 5;
+            const done = completedSections.size;
+            const percent = Math.round((done / total) * 100);
             
-            // Buttons aktualisieren
-            document.querySelectorAll('.formation-btn').forEach((btn, index) => {
-                btn.classList.remove('active');
-                if (index + 1 === stage) btn.classList.add('active');
+            document.getElementById('progressFill').style.width = percent + '%';
+            document.getElementById('progressText').textContent = percent + '% abgeschlossen';
+            
+            // Modul-Dots aktualisieren
+            const dots = document.querySelectorAll('.module-dot');
+            const sections = ['intro', 'spectral', 'giants', 'evolution', 'quiz'];
+            
+            dots.forEach((dot, i) => {
+                dot.classList.remove('completed', 'current');
+                if (completedSections.has(sections[i])) {
+                    dot.classList.add('completed');
+                } else if (sections[i] === [...completedSections].pop()) {
+                    dot.classList.add('current');
+                }
             });
         }
 
-        async function animateFormation() {
-            for (let i = 1; i <= 4; i++) {
-                setFormationStage(i);
-                await new Promise(resolve => setTimeout(resolve, 2500));
+        // Spektralkarten rendern
+        function renderSpectralCards() {
+            const grid = document.getElementById('spectralGrid');
+            grid.innerHTML = spectralStars.map(star => `
+                <div class="learn-card" style="--card-color: ${star.color}; --card-glow: ${star.glow};">
+                    <span class="card-badge">Klasse ${star.class}</span>
+                    <div class="star-preview">
+                        <div class="star-orb" style="width: 45px; height: 45px; background: radial-gradient(circle, ${star.color}, ${star.color}88); box-shadow: 0 0 25px ${star.glow};"></div>
+                    </div>
+                    <h3 class="card-title">${star.name}</h3>
+                    <p class="card-description">${star.desc}</p>
+                    <div class="card-stats">
+                        <div class="stat">
+                            <span class="stat-label">Temperatur</span>
+                            <span class="stat-value">${star.temp}</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Größe</span>
+                            <span class="stat-value">${star.size}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Riesen-Karten rendern
+        function renderGiantsCards() {
+            const grid = document.getElementById('giantsGrid');
+            grid.innerHTML = giantsData.map(star => `
+                <div class="learn-card" style="--card-color: ${star.color}; --card-glow: ${star.glow};">
+                    <span class="card-badge">${star.class}</span>
+                    <div class="star-preview">
+                        <div class="star-orb" style="width: ${star.size.includes('1500') ? 65 : 50}px; height: ${star.size.includes('1500') ? 65 : 50}px; background: radial-gradient(circle, ${star.color}, ${star.color}88); box-shadow: 0 0 25px ${star.glow};"></div>
+                    </div>
+                    <h3 class="card-title">${star.name}</h3>
+                    <p class="card-description">${star.desc}</p>
+                    <div class="card-stats">
+                        <div class="stat">
+                            <span class="stat-label">Temperatur</span>
+                            <span class="stat-value">${star.temp}</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Größe</span>
+                            <span class="stat-value">${star.size}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Demo-Funktionen
+        function showDemo(num) {
+            document.querySelectorAll('.demo-stage').forEach(s => s.classList.remove('active'));
+            document.querySelector(`.demo-stage[data-stage="${num}"]`).classList.add('active');
+            document.querySelectorAll('.demo-btn').forEach((b, i) => b.classList.toggle('active', i + 1 === num || (num === 3 && i === 2)));
+        }
+
+        async function playDemo() {
+            for (let i = 1; i <= 3; i++) {
+                showDemo(i);
+                await new Promise(r => setTimeout(r, 2000));
             }
         }
 
-        // Quiz Funktionen
-        function shuffleArray(array) {
-            const newArray = [...array];
-            for (let i = newArray.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-            }
-            return newArray;
-        }
-
+        // Quiz-Funktionen
         function startQuiz() {
-            currentQuestionIndex = 0;
+            currentQuiz = [...questions].sort(() => Math.random() - 0.5).slice(0, 10);
+            qIndex = 0;
             score = 0;
-            selectedQuestions = shuffleArray(quizQuestions).slice(0, 10);
-            
-            document.getElementById('score').textContent = '0';
-            document.getElementById('totalQuestions').textContent = '10';
             document.getElementById('quizContent').style.display = 'block';
-            document.getElementById('quizResult').classList.remove('show');
-            
+            document.getElementById('result').classList.remove('show');
+            document.getElementById('qTotal').textContent = currentQuiz.length;
             showQuestion();
         }
 
         function showQuestion() {
-            const question = selectedQuestions[currentQuestionIndex];
-            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
-            document.getElementById('questionText').textContent = question.question;
+            const q = currentQuiz[qIndex];
+            document.getElementById('qNum').textContent = qIndex + 1;
+            document.getElementById('score').textContent = score;
+            document.getElementById('question').textContent = q.q;
             
-            const optionsContainer = document.getElementById('quizOptions');
-            optionsContainer.innerHTML = '';
+            const opts = document.getElementById('options');
+            opts.innerHTML = q.a.map((a, i) => `
+                <button class="quiz-option" onclick="selectAnswer(${i})">${a}</button>
+            `).join('');
             
-            question.options.forEach((option, index) => {
-                const btn = document.createElement('button');
-                btn.className = 'quiz-option';
-                btn.textContent = option;
-                btn.addEventListener('click', () => selectAnswer(index));
-                optionsContainer.appendChild(btn);
-            });
-            
-            document.getElementById('quizFeedback').classList.remove('show', 'correct', 'wrong');
+            document.getElementById('feedback').classList.remove('show');
             document.getElementById('nextBtn').style.display = 'none';
         }
 
-        function selectAnswer(selectedIndex) {
-            const question = selectedQuestions[currentQuestionIndex];
-            const options = document.querySelectorAll('.quiz-option');
-            const feedback = document.getElementById('quizFeedback');
+        function selectAnswer(i) {
+            const q = currentQuiz[qIndex];
+            const opts = document.querySelectorAll('.quiz-option');
+            const fb = document.getElementById('feedback');
             
-            options.forEach(opt => opt.classList.add('disabled'));
+            opts.forEach(o => o.disabled = true);
             
-            if (selectedIndex === question.correct) {
-                options[selectedIndex].classList.add('correct');
+            if (i === q.c) {
+                opts[i].classList.add('correct');
                 score++;
-                document.getElementById('score').textContent = score;
-                feedback.textContent = '✓ Richtig! Gut gemacht!';
-                feedback.classList.add('show', 'correct');
+                fb.textContent = '✓ Richtig!';
+                fb.className = 'quiz-feedback show correct';
             } else {
-                options[selectedIndex].classList.add('wrong');
-                options[question.correct].classList.add('correct');
-                feedback.textContent = '✗ Leider falsch. Die richtige Antwort ist: ' + question.options[question.correct];
-                feedback.classList.add('show', 'wrong');
+                opts[i].classList.add('wrong');
+                opts[q.c].classList.add('correct');
+                fb.textContent = '✗ Leider falsch. Die richtige Antwort ist: ' + q.a[q.c];
+                fb.className = 'quiz-feedback show wrong';
             }
             
             document.getElementById('nextBtn').style.display = 'block';
         }
 
-        document.getElementById('nextBtn').addEventListener('click', () => {
-            currentQuestionIndex++;
-            if (currentQuestionIndex < 10) {
+        function nextQuestion() {
+            qIndex++;
+            if (qIndex < currentQuiz.length) {
                 showQuestion();
             } else {
                 showResult();
             }
-        });
+        }
 
         function showResult() {
             document.getElementById('quizContent').style.display = 'none';
-            const resultSection = document.getElementById('quizResult');
-            resultSection.classList.add('show');
+            const r = document.getElementById('result');
+            r.classList.add('show');
+            document.getElementById('finalScore').textContent = score + '/' + currentQuiz.length;
             
-            document.getElementById('finalScore').textContent = score;
+            let text = '';
+            if (score === 10) text = 'Perfekt! Du bist ein Experte! 🌟';
+            else if (score >= 7) text = 'Sehr gut! Du weißt viel über Sterne!';
+            else if (score >= 4) text = 'Gut gemacht! Lies nochmal nach.';
+            else text = 'Lerne weiter! Versuche es erneut.';
             
-            let message = '';
-            if (score === 10) {
-                message = 'Perfekt! Du bist ein wahrer Sternenexperte! 🌟';
-            } else if (score >= 7) {
-                message = 'Sehr gut! Du kennst dich wirklich gut mit Sternen aus!';
-            } else if (score >= 4) {
-                message = 'Nicht schlecht! Aber es gibt noch viel zu entdecken!';
-            } else {
-                message = 'Lerne noch mehr über Sterne und versuche es erneut!';
-            }
-            document.getElementById('resultMessage').textContent = message;
+            document.getElementById('resultText').textContent = text;
         }
 
-        document.getElementById('restartBtn').addEventListener('click', startQuiz);
-
-        // Sternenhintergrund erstellen mit Sternschnuppen
-        function createStarField() {
-            const starField = document.getElementById('starField');
-            const numStars = 200;
-            
-            for (let i = 0; i < numStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                
-                const size = Math.random() * 3 + 1;
-                const x = Math.random() * 100;
-                const y = Math.random() * 100;
-                const duration = Math.random() * 3 + 2;
-                const baseOpacity = Math.random() * 0.5 + 0.3;
-                
-                star.style.cssText = `
-                    width: ${size}px;
-                    height: ${size}px;
-                    left: ${x}%;
-                    top: ${y}%;
-                    --duration: ${duration}s;
-                    --base-opacity: ${baseOpacity};
-                `;
-                
-                starField.appendChild(star);
-            }
-            
-            // Sternschnuppen hinzufügen
-            for (let i = 0; i < 5; i++) {
-                const shootingStar = document.createElement('div');
-                shootingStar.className = 'shooting-star';
-                shootingStar.style.top = Math.random() * 50 + '%';
-                shootingStar.style.animationDelay = Math.random() * 10 + 's';
-                shootingStar.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                starField.appendChild(shootingStar);
-            }
+        function restartQuiz() {
+            startQuiz();
         }
 
         // Initialisierung
-        function init() {
-            // Hauptreihensterne
-            mainSequenceGrid.innerHTML = '';
-            mainSequenceStars.forEach(star => {
-                mainSequenceGrid.appendChild(createStarCard(star));
-            });
-
-            // Riesen und Überriesen
-            giantsGrid.innerHTML = '';
-            giantsStars.forEach(star => {
-                giantsGrid.appendChild(createStarCard(star, true));
-            });
-
-            // Leuchtklassen
-            luminosityGrid.innerHTML = '';
-            luminosityClasses.forEach(lc => {
-                luminosityGrid.appendChild(createLuminosityCard(lc));
-            });
-
-            createStarField();
-        }
-
-        init();
+        renderSpectralCards();
+        renderGiantsCards();
+        updateProgress();
     </script>
 </body>
 </html>
